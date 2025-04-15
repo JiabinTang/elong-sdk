@@ -3,15 +3,14 @@ use std::env;
 use async_trait::async_trait;
 
 use crate::{
-    request::static_city::*,
-    response::{api_response::ElongResponse, static_city::*},
-    Elong,
+    request::{static_city::*, static_list::StaticListRequest},
+    response::{api_response::ElongResponse, static_city::*, static_list::StaticListResponse},
+    Elong, ElongResult,
 };
 
 use super::{
     client::ElongClient,
     endpoints::{ApiEndpoint, ApiMethod},
-    error::ElongError,
 };
 
 #[derive(Clone)]
@@ -53,13 +52,18 @@ impl ElongService {
 
 #[async_trait]
 impl Elong for ElongService {
-    async fn get_static_city(
-        &self,
-        request: StaticCityReq,
-    ) -> Result<ElongResponse<StaticCityRes>, ElongError> {
-        let res: ElongResponse<StaticCityRes> = self
+    async fn get_static_city(&self, request: StaticCityRequest) -> ElongResult<StaticCityResponse> {
+        let res: ElongResponse<StaticCityResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticCity, request)
+            .await?;
+        Ok(res)
+    }
+
+    async fn get_static_list(&self, request: StaticListRequest) -> ElongResult<StaticListResponse> {
+        let res: ElongResponse<StaticListResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::StaticList, request)
             .await?;
         Ok(res)
     }

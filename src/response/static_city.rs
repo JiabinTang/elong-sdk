@@ -4,7 +4,7 @@ use super::api_response::{BaseResponse, ElongResponse};
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
-pub struct StaticCityRes {
+pub struct StaticCityResponse {
     pub count: u32,
     pub citys: Vec<City>,
 }
@@ -28,14 +28,14 @@ pub struct City {
     pub country_code: String,
 }
 
-impl BaseResponse for ElongResponse<StaticCityRes> {
+impl BaseResponse for ElongResponse<StaticCityResponse> {
     fn from_json(json: String) -> Self {
         log::debug!("ElongResponse<StaticCityRes> json: {}", json);
         serde_json::from_str(&json).unwrap_or_else(|err| {
             log::error!("Failed to parse ElongResponse<StaticCityRes>: {}", err);
             ElongResponse {
                 code: String::new(),
-                result: StaticCityRes {
+                result: StaticCityResponse {
                     count: 0,
                     citys: vec![],
                 },
