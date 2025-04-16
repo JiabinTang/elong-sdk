@@ -131,4 +131,16 @@ impl Elong for ElongService {
             .await?;
         Ok(res)
     }
+
+    /// 静态数据 - 价格增量分片
+    async fn get_incr_sharding_rate(
+        &self,
+        request: IncrRateRequest,
+    ) -> ElongResult<IncrRateResponse> {
+        let res: ElongResponse<IncrRateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::ShardingRate, request)
+            .await?;
+        Ok(res)
+    }
 }

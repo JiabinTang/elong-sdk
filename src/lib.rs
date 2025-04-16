@@ -1,7 +1,9 @@
 use async_trait::async_trait;
 use elong::error::ElongError;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+    data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest,
+    incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest,
+    static_list::StaticListRequest,
 };
 use response::{
     api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse,
@@ -33,7 +35,7 @@ pub trait Elong {
     /// 静态数据 - 库存增量
     async fn get_incr_inv(&self, req: IncrInvRequest) -> ElongResult<IncrInvResponse>;
 
-    /// 静态数据 - 库存增量切片
+    /// 静态数据 - 库存增量分片
     async fn get_incr_sharding_inv(&self, req: IncrInvRequest) -> ElongResult<IncrInvResponse>;
 
     /// 静态数据 - 价格全量
@@ -41,4 +43,7 @@ pub trait Elong {
 
     /// 静态数据 - 价格增量
     async fn get_incr_rate(&self, req: IncrRateRequest) -> ElongResult<IncrRateResponse>;
+
+    /// 静态数据 - 价格增量分片
+    async fn get_incr_sharding_rate(&self, req: IncrRateRequest) -> ElongResult<IncrRateResponse>;
 }

@@ -142,12 +142,30 @@ async fn test_get_incr_sharding_inv() {
 async fn test_get_incr_rate() {
     let service = create_test_service();
 
-    let request = IncrRateRequest{
+    let request = IncrRateRequest {
         last_id: 0,
+        sharding_key: 16,
         count: Some(10),
     };
 
     let result = service.get_incr_rate(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+#[tokio::test]
+async fn test_get_incr_sharding_rate() {
+    let service = create_test_service();
+
+    let request = IncrRateRequest {
+        last_id: 318860000001,
+        sharding_key: 16,
+        count: Some(10),
+    };
+
+    let result = service.get_incr_sharding_rate(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
