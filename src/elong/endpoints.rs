@@ -33,12 +33,28 @@ pub enum ApiMethod {
     StaticGroup,
     /// hotel.dictionary            酒店字典数据-静态信息
     Dictionary,
+    /// hotel.data.rp               国内酒店-产品详情 (不建议使用)
+    DataRp,
+    /// hotel.incr.state            国内酒店-产品状态增量 (不建议使用)
+    IncrState,
+    /// hotel.data.inventory        国内酒店-房态库存 (不建议使用)
+    DataInventory,
     /// hotel.incr.inv              国内酒店-库存增量
     IncrInv,
+    /// hotel.incr.sharding.inv     国内酒店-分片库存增量 (不建议使用)
+    ShardingInv,
+    /// hotel.data.rate             国内酒店-产品价格 (不建议使用)
+    DataRate,
+    /// hotel.incr.rate             国内酒店-价格增量 (不建议使用)
+    IncrRate,
+    /// hotel.incr.sharding.rate    国内酒店-分片价格增量 (不建议使用)
+    ShardingRate,
     /// hotel.incr.id               国内酒店-增量编号
     IncrId,
     /// hotel.incr.sharding.id      国内酒店-分片增量编号
     IncrShardingId,
+    /// hotel.incr.sharding.state   国内酒店-分片状态增量 (不建议使用)
+    ShardingState,
     /// hotel.data.validate         国内酒店-数据验证
     DataValidate,
     /// hotel.data.booking          国内酒店-预定数据
@@ -83,9 +99,17 @@ impl ApiMethod {
             ApiMethod::StaticBrand => "hotel.static.brand",
             ApiMethod::StaticGroup => "hotel.static.group",
             ApiMethod::Dictionary => "hotel.dictionary",
+            ApiMethod::DataRp => "hotel.data.rp",
+            ApiMethod::IncrState => "hotel.incr.state",
+            ApiMethod::DataInventory => "hotel.data.inventory",
             ApiMethod::IncrInv => "hotel.incr.inv",
+            ApiMethod::ShardingInv => "hotel.incr.sharding.inv",
+            ApiMethod::DataRate => "hotel.data.rate",
+            ApiMethod::IncrRate => "hotel.incr.rate",
+            ApiMethod::ShardingRate => "hotel.incr.sharding.rate",
             ApiMethod::IncrId => "hotel.incr.id",
             ApiMethod::IncrShardingId => "hotel.incr.sharding.id",
+            ApiMethod::ShardingState => "hotel.incr.sharding.state",
             ApiMethod::DataValidate => "hotel.data.validate",
             ApiMethod::DataBooking => "hotel.data.booking",
             ApiMethod::CreditCardValidate => "common.creditcard.validate",

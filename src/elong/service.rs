@@ -3,8 +3,8 @@ use std::env;
 use async_trait::async_trait;
 
 use crate::{
-    request::{static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest},
-    response::{api_response::ElongResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse},
+    request::{data_inventory::DataInventoryRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest},
+    response::{api_response::ElongResponse, data_inventory::DataInventoryResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse},
     Elong, ElongResult,
 };
 
@@ -72,6 +72,14 @@ impl Elong for ElongService {
         let res: ElongResponse<StaticInfoResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticInfo, request)
+            .await?;
+        Ok(res)
+    }
+
+    async fn get_data_inventory(&self, request: DataInventoryRequest) -> ElongResult<DataInventoryResponse> {
+        let res: ElongResponse<DataInventoryResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::DataInventory, request)
             .await?;
         Ok(res)
     }

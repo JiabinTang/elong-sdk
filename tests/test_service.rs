@@ -59,3 +59,23 @@ async fn test_get_static_info() {
     assert!(result.is_ok());
     assert!(result.unwrap().is_success());
 }
+
+#[tokio::test]
+async fn test_get_data_inventory() {
+    let service = create_test_service();
+
+    let request = elong_offline_sdk::request::data_inventory::DataInventoryRequest {
+        hotel_ids: "93993637".to_string(),
+        hotel_codes: None,
+        room_type_id: None,
+        start_date: "2025-04-16".to_string(),
+        end_date: "2025-04-17".to_string(),
+        is_need_instant_confirm: None,
+    };
+
+    let result = service.get_data_inventory(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
