@@ -42,7 +42,7 @@ pub enum ApiMethod {
     /// hotel.incr.inv              国内酒店-库存增量
     IncrInv,
     /// hotel.incr.sharding.inv     国内酒店-分片库存增量 (不建议使用)
-    ShardingInv,
+    IncrShardingInv,
     /// hotel.data.rate             国内酒店-产品价格 (不建议使用)
     DataRate,
     /// hotel.incr.rate             国内酒店-价格增量 (不建议使用)
@@ -103,7 +103,7 @@ impl ApiMethod {
             ApiMethod::IncrState => "hotel.incr.state",
             ApiMethod::DataInventory => "hotel.data.inventory",
             ApiMethod::IncrInv => "hotel.incr.inv",
-            ApiMethod::ShardingInv => "hotel.incr.sharding.inv",
+            ApiMethod::IncrShardingInv => "hotel.incr.sharding.inv",
             ApiMethod::DataRate => "hotel.data.rate",
             ApiMethod::IncrRate => "hotel.incr.rate",
             ApiMethod::ShardingRate => "hotel.incr.sharding.rate",
