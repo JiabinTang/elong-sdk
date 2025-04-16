@@ -10,6 +10,12 @@ pub trait BaseResponse: Sized {
 #[serde(rename_all = "PascalCase")]
 pub struct ElongResponse<T> {
     pub code: String,
-    pub result: T,
-    pub guid: String,
+    pub result: Option<T>,
+    pub guid: Option<String>,
+}
+
+impl<T> ElongResponse<T> {
+    pub fn is_success(&self) -> bool {
+        self.code == "0"
+    }
 }

@@ -3,8 +3,8 @@ use std::env;
 use async_trait::async_trait;
 
 use crate::{
-    request::{static_city::*, static_list::StaticListRequest},
-    response::{api_response::ElongResponse, static_city::*, static_list::StaticListResponse},
+    request::{static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest},
+    response::{api_response::ElongResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse},
     Elong, ElongResult,
 };
 
@@ -64,6 +64,14 @@ impl Elong for ElongService {
         let res: ElongResponse<StaticListResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticList, request)
+            .await?;
+        Ok(res)
+    }
+
+    async fn get_static_info(&self, request: StaticInfoRequest) -> ElongResult<StaticInfoResponse> {
+        let res: ElongResponse<StaticInfoResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::StaticInfo, request)
             .await?;
         Ok(res)
     }

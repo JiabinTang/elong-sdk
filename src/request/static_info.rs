@@ -9,7 +9,7 @@ pub struct StaticInfoRequest {
     #[serde(rename = "HotelId")]
     pub hotel_id: String,
     /// 其他条件，英文逗号分割，当Version大于等于1.6时必填
-    /// 例如 1,5 ：返回Detail节点和TelList节点
+    /// 例如 1,5 ：返回Detail节点和TelList节点 1、Detail 2、Suppliers 3、Rooms 4、Images 5、TelList 6、HotelTags、RoomTags
     #[serde(rename = "Options", skip_serializing_if = "Option::is_none")]
     pub options: Option<String>,
 }
