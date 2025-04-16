@@ -14,8 +14,7 @@ pub struct StaticInfoResponse {
     /// Rooms 房间列表 Room[] Y 酒店房间列表，参考Room节点
     pub rooms: Option<Vec<Room>>,
     /// Images 图片列表 Image[] Y 酒店图片列表，参考Image节点
-    // pub images: Option<Vec<Image>>,
-    pub test: String,
+    pub images: Option<Vec<Image>>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -191,8 +190,8 @@ pub struct Hotel {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Facility {
-    ///FacilityId  设施ID StringN
-    pub facility_id: String,
+    ///FacilityId  设施ID String N
+    pub facility_id: i32,
     ///FacilityName    设施中文名称 String Y
     pub facility_name: Option<String>,
     ///FacilityNameEn  设施英文名称 String Y
@@ -214,7 +213,7 @@ pub struct Theme {
 #[serde(rename_all = "PascalCase")]
 pub struct HotelType {
     ///HotelTypeId  酒店类型ID String Y
-    pub hotel_type_id: String,
+    pub hotel_type_id: i32,
     ///HotelTypeName  酒店类型名称 String Y
     pub hotel_type_name: Option<String>,
     ///HotelTypeNameEn  酒店类型英文名称 String Y
@@ -225,7 +224,7 @@ pub struct HotelType {
 #[serde(rename_all = "PascalCase")]
 pub struct ServiceRank {
     /// SummaryScore 酒店服务总评分
-    pub summary_score: Option<f64>,
+    pub summary_score: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -276,8 +275,8 @@ pub struct DepositPolicy {
     pub deposit_switch: i32,
     ///Frequency 收取频次 Integer Y 1:固定金额，2:每间，3:每晚
     pub frequency: Option<i32>,
-    ///Amount 收取金额 BigDecimal Y
-    pub amount: Option<String>,
+    ///Amount 收取金额 f64 Y
+    pub amount: Option<f64>,
     ///PayType 押金支付方式 Integer[] Y 1:现金，2:信用卡，3:借记卡，4:第三方平台
     pub pay_type: Option<Vec<i32>>,
     ///RefundType 押金退还方式 Integer[] Y 0:不原路退还，1:原路退还
@@ -365,7 +364,7 @@ pub struct BedInfo {
 #[serde(rename_all = "PascalCase")]
 pub struct FacilityType {
     /// FacilityTypeId 设施分类Id Long N
-    pub facility_type_id: String,
+    pub facility_type_id: i32,
     /// FacilityTypeName 设施分类名称 String N
     pub facility_type_name: String,
     /// FacilityInfoList 设施信息       FacilityInfo[] Y
@@ -376,7 +375,7 @@ pub struct FacilityType {
 #[serde(rename_all = "PascalCase")]
 pub struct FacilityInfo {
     ///FacilityId 设施Id Long N
-    pub facility_id: String,
+    pub facility_id: i32,
     ///FacilityName 设施名称 String N
     pub facility_name: String,
     ///FeeInfo 设施收费信息     FeeInfo Y
@@ -401,8 +400,8 @@ pub struct FeeInfo {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct FeeDetail {
-    ///Amount 设施费用金额 BigDecimal Y
-    pub amount: Option<String>,
+    ///Amount 设施费用金额 f64 Y
+    pub amount: Option<f64>,
     ///Currency 设施费用币种 String Y
     pub currency: Option<String>,
     ///FeeTimeType 设施费用类型    Enum Y Time：次数；Minute：分钟；Quarter：一刻钟；HalfHour：半小时；Hour：小时；Day：天；Week：周；Person：人；Bed：床；Car：车；Bottle：瓶
@@ -496,8 +495,8 @@ pub struct ChildBreakfastDetail {
     pub range_from: Option<String>,
     /// RangeTo 范围截止 String Y
     pub range_to: Option<String>,
-    /// Amount 金额 BigDecimal Y 0代表免费；-1代表未知，详询酒店
-    pub amount: Option<String>,
+    /// Amount 金额 f64 Y 0代表免费；-1代表未知，详询酒店
+    pub amount: Option<f64>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -523,8 +522,8 @@ pub struct Fee {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Amount {
-    /// Amount 金额 BigDecimal Y 0为免费
-    pub amount: Option<String>,
+    /// Amount 金额 f64 Y 0为免费
+    pub amount: Option<f64>,
     /// Currency 币种 String Y
     pub currency: Option<String>,
 }
@@ -558,7 +557,7 @@ pub struct ExtraBedPolicy {
     pub charge_type: Option<String>,
     ///Currency 加床费用币种 String Y
     pub currency: Option<String>,
-    ///Fee 收费金额或比例 BigDecimal Y
+    ///Fee 收费金额或比例 f64 Y
     pub fee: Option<String>,
     ///RangeFrom 年龄范围左 String Y
     pub range_from: Option<String>,
@@ -619,6 +618,7 @@ pub struct HelpfulTip {
 #[serde(rename_all = "PascalCase")]
 pub struct Room {
     /// RoomID  房型ID String N 对应动态接口中的RoomId
+    #[serde(rename = "RoomID")]
     pub room_id: String,
     /// RoomName 房型中文名称 String N
     pub room_name: String,
@@ -660,6 +660,7 @@ pub struct Room {
 #[serde(rename_all = "PascalCase")]
 pub struct Image {
     ///RoomID 关联的房型ID String Y
+    #[serde(rename = "RoomID")]
     pub room_id: Option<String>,
     ///Type 图片类型 Int N 1 - 餐厅 (Restaurant) 2 - 休闲 (Recreation Facilities) 3 - 会议室 (Meeting/Conference) 5 - 外观 (Exterior) 6 - 大堂/接待台   (Lobby/ Reception) 8 - 客房 (Guest Room) 10 - 其他 (Other Facilities) 11 - 公共区域 (Public Area) 12 - 周边景点 (Nearby Attractions)
     pub r#type: Option<i32>,
