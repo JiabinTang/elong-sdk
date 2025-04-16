@@ -5,12 +5,13 @@ use async_trait::async_trait;
 use crate::{
     request::{
         data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest,
-        static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest,
+        incr_rate::IncrRateRequest, static_city::*, static_info::StaticInfoRequest,
+        static_list::StaticListRequest,
     },
     response::{
         api_response::ElongResponse, data_inventory::InventoryResponse,
-        data_rate::DataRateResponse, incr_inv::IncrInvResponse, static_city::*,
-        static_info::StaticInfoResponse, static_list::StaticListResponse,
+        data_rate::DataRateResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse,
+        static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse,
     },
     Elong, ElongResult,
 };
@@ -118,6 +119,15 @@ impl Elong for ElongService {
         let res: ElongResponse<DataRateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataRate, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 静态数据 - 价格增量
+    async fn get_incr_rate(&self, request: IncrRateRequest) -> ElongResult<IncrRateResponse> {
+        let res: ElongResponse<IncrRateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::IncrRate, request)
             .await?;
         Ok(res)
     }

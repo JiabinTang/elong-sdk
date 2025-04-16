@@ -2,6 +2,7 @@ use elong_offline_sdk::elong::service::ElongService;
 use elong_offline_sdk::request::data_inventory::InventoryRequest;
 use elong_offline_sdk::request::data_rate::DataRateRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
+use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_info::StaticInfoRequest;
 use elong_offline_sdk::request::static_list::StaticListRequest;
@@ -131,6 +132,22 @@ async fn test_get_incr_sharding_inv() {
     };
 
     let result = service.get_incr_sharding_inv(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+#[tokio::test]
+async fn test_get_incr_rate() {
+    let service = create_test_service();
+
+    let request = IncrRateRequest{
+        last_id: 0,
+        count: Some(10),
+    };
+
+    let result = service.get_incr_rate(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

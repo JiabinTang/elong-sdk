@@ -5,3 +5,4 @@ pub mod static_info;
 pub mod data_inventory;
 pub mod data_rate;
 pub mod incr_inv;
+pub mod incr_rate;

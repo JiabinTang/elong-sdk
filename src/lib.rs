@@ -1,13 +1,12 @@
 use async_trait::async_trait;
 use elong::error::ElongError;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest,
-    static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest,
+    data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
 };
 use response::{
     api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse,
-    incr_inv::IncrInvResponse, static_city::*, static_info::StaticInfoResponse,
-    static_list::StaticListResponse,
+    incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::*,
+    static_info::StaticInfoResponse, static_list::StaticListResponse,
 };
 
 pub mod elong;
@@ -39,4 +38,7 @@ pub trait Elong {
 
     /// 静态数据 - 价格全量
     async fn get_data_rate(&self, req: DataRateRequest) -> ElongResult<DataRateResponse>;
+
+    /// 静态数据 - 价格增量
+    async fn get_incr_rate(&self, req: IncrRateRequest) -> ElongResult<IncrRateResponse>;
 }
