@@ -1,6 +1,8 @@
 use std::{fmt, io, string::FromUtf8Error};
 
-#[derive(Debug)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, Serialize)]
 pub enum ElongError {
     /// 网络请求错误
     HttpError(String),

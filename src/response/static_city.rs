@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::elong::error::ElongError;
+
 use super::api_response::{BaseResponse, ElongResponse};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -29,18 +31,8 @@ pub struct City {
 }
 
 impl BaseResponse for ElongResponse<StaticCityResponse> {
-    fn from_json(json: String) -> Self {
+    fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<StaticCityRes> json: {}", json);
-        serde_json::from_str(&json).unwrap_or_else(|err| {
-            log::error!("Failed to parse ElongResponse<StaticCityRes>: {}", err);
-            ElongResponse {
-                code: String::new(),
-                result: StaticCityResponse {
-                    count: 0,
-                    citys: vec![],
-                },
-                guid: String::new(),
-            }
-        })
+        Ok(serde_json::from_str(&json)?)
     }
 }

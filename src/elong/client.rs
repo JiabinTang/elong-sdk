@@ -41,10 +41,12 @@ impl ElongClient {
         T: BaseRequest,
         U: BaseResponse,
     {
+        let request = request.to_json()?;
+
         let data = ApiRequestPayload {
             version: 1.62,
             local: "zh-CN".to_string(),
-            request: request.to_json(),
+            request,
         };
 
         let params = ApiSignedRequest::new(
@@ -61,7 +63,7 @@ impl ElongClient {
 
         let response = self.client.get(&url).await?;
 
-        let result = U::from_json(response);
+        let result = U::from_json(response)?;
 
         Ok(result)
     }

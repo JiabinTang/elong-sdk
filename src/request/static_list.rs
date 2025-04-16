@@ -1,7 +1,10 @@
+use crate::elong::error::ElongError;
+
 use super::api_request::BaseRequest;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "PascalCase")]
 pub struct StaticListRequest {
     /// 开始时间，格式：yyyy-MM-dd HH:mm:ss
     #[serde(rename = "StartTime", skip_serializing_if = "Option::is_none")]
@@ -21,17 +24,7 @@ pub struct StaticListRequest {
 }
 
 impl BaseRequest for StaticListRequest {
-    fn to_json(&self) -> String {
-        serde_json::to_string(self).unwrap_or_else(|err| {
-            log::error!("Failed to serialize StaticListRequest: {}", err);
-            format!(
-                r#"{{"StartTime":"{}","EndTime":"{}","CityId":"{}","PageSize":{},"PageIndex":{}}}"#,
-                self.start_time.as_deref().unwrap_or(""),
-                self.end_time.as_deref().unwrap_or(""),
-                self.city_id,
-                self.page_size.unwrap_or(2000),
-                self.page_index.unwrap_or(1)
-            )
-        })
+    fn to_json(&self) -> Result<String, ElongError> {
+        Ok(serde_json::to_string(self)?)
     }
 }

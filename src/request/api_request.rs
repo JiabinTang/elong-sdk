@@ -1,5 +1,7 @@
 use urlencoding::encode;
 
+use crate::elong::error::ElongError;
+
 pub struct ApiSignedRequest {
     /// 账户名
     pub user: String,
@@ -33,7 +35,6 @@ impl ApiSignedRequest {
         method: String,
         data: ApiRequestPayload,
     ) -> Self {
-
         let data = data.to_json();
         let format = "json".to_string();
 
@@ -81,5 +82,5 @@ impl ApiRequestPayload {
 }
 
 pub trait BaseRequest {
-    fn to_json(&self) -> String;
+    fn to_json(&self) -> Result<String, ElongError>;
 }

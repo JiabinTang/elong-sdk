@@ -1,6 +1,11 @@
+use serde::{Deserialize, Serialize};
+
+use crate::elong::error::ElongError;
+
 use super::api_request::BaseRequest;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "PascalCase")]
 pub struct StaticCityRequest {
     /// CountryType     国家类型        Int Y   默认0：所有城市、 1：国内 、2：国际
     pub country_type: i32,
@@ -15,14 +20,7 @@ pub struct StaticCityRequest {
 }
 
 impl BaseRequest for StaticCityRequest {
-    fn to_json(&self) -> String {
-        format!(
-            r#"{{"CountryType":{},"CityIdType":{},"IsNeedLocation":{},"PageSize":{},"PageIndex":{}}}"#,
-            self.country_type,
-            self.city_id_type,
-            self.is_need_location,
-            self.page_size,
-            self.page_index
-        )
+    fn to_json(&self) -> Result<String, ElongError> {
+        Ok(serde_json::to_string(self)?)
     }
 }

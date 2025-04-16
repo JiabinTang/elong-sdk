@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-pub trait BaseResponse {
-    fn from_json(json: String) -> Self;
+use crate::elong::error::ElongError;
+
+pub trait BaseResponse: Sized {
+    fn from_json(json: String) -> Result<Self, ElongError>;
 }
 
 #[derive(Debug, Serialize, Deserialize)]
