@@ -6,7 +6,7 @@ use super::api_request::BaseRequest;
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "PascalCase")]
-pub struct DataInventoryRequest {
+pub struct InventoryRequest {
     /// 酒店编号，最多10个，逗号分隔
     pub hotel_ids: String,
     /// 酒店编码，最多10个，逗号分隔。如果输入这个参数，请确保这些HotelCodes都是HotelIds(只能输入一个)所属的
@@ -21,7 +21,7 @@ pub struct DataInventoryRequest {
     pub is_need_instant_confirm: Option<bool>,
 }
 
-impl BaseRequest for DataInventoryRequest {
+impl BaseRequest for InventoryRequest {
     fn to_json(&self) -> Result<String, ElongError> {
         Ok(serde_json::to_string(self)?)
     }

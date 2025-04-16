@@ -3,8 +3,15 @@ use std::env;
 use async_trait::async_trait;
 
 use crate::{
-    request::{data_inventory::DataInventoryRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest},
-    response::{api_response::ElongResponse, data_inventory::DataInventoryResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse},
+    request::{
+        data_inventory::InventoryRequest, data_rate::DataRateRequest, static_city::*,
+        static_info::StaticInfoRequest, static_list::StaticListRequest,
+    },
+    response::{
+        api_response::ElongResponse, data_inventory::InventoryResponse,
+        data_rate::DataRateResponse, static_city::*, static_info::StaticInfoResponse,
+        static_list::StaticListResponse,
+    },
     Elong, ElongResult,
 };
 
@@ -76,10 +83,21 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    async fn get_data_inventory(&self, request: DataInventoryRequest) -> ElongResult<DataInventoryResponse> {
-        let res: ElongResponse<DataInventoryResponse> = self
+    async fn get_data_inventory(
+        &self,
+        request: InventoryRequest,
+    ) -> ElongResult<InventoryResponse> {
+        let res: ElongResponse<InventoryResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataInventory, request)
+            .await?;
+        Ok(res)
+    }
+
+    async fn get_data_rate(&self, request: DataRateRequest) -> ElongResult<DataRateResponse> {
+        let res: ElongResponse<DataRateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::DataRate, request)
             .await?;
         Ok(res)
     }

@@ -6,7 +6,7 @@ use super::api_response::{BaseResponse, ElongResponse};
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
-pub struct DataInventoryResponse {
+pub struct InventoryResponse {
     ///库存集合
     pub inventories: Vec<Inventory>,
 }
@@ -47,7 +47,7 @@ pub struct Inventory {
     pub ic_end_time: Option<String>,
 }
 
-impl BaseResponse for ElongResponse<DataInventoryResponse> {
+impl BaseResponse for ElongResponse<InventoryResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<DataInventoryResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
