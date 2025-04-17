@@ -4,14 +4,14 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct StaticCityResponse {
     pub count: u32,
     pub citys: Vec<City>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct City {
     pub city_id: String,
@@ -32,7 +32,7 @@ pub struct City {
     pub locations: Option<Vec<Location>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Location {
     /// LocationID LocationID String N

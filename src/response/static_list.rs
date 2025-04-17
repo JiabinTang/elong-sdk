@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct StaticListResponse {
     pub count: u32,
@@ -12,7 +12,7 @@ pub struct StaticListResponse {
     pub hotels: Option<Vec<Hotel>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Hotel {
     pub hotel_id: String,

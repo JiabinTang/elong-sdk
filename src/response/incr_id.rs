@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct IncrIdResponse {
     /// LastId 最后的更新ID Long N

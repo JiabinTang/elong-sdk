@@ -6,7 +6,7 @@ pub trait BaseResponse: Sized {
     fn from_json(json: String) -> Result<Self, ElongError>;
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ElongResponse<T> {
     pub code: String,

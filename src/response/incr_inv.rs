@@ -4,14 +4,14 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct IncrInvResponse {
     ///库存集合
     pub inventories: Vec<Inventory>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Inventory {
     /// LastId 增量ID Long N 

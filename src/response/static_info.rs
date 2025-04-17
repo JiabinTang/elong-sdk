@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct StaticInfoResponse {
     /// Detail 详情 Detail N 酒店详情数据，参考Detail节点
@@ -17,7 +17,7 @@ pub struct StaticInfoResponse {
     pub images: Option<Vec<Image>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Hotel {
     /// 酒店ID
@@ -187,7 +187,7 @@ pub struct Hotel {
     pub child_policy: Option<ChildPolicy>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Facility {
     ///FacilityId  设施ID String N
@@ -198,7 +198,7 @@ pub struct Facility {
     pub facility_name_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Theme {
     ///ThemeId  主题ID String Y
@@ -209,7 +209,7 @@ pub struct Theme {
     pub theme_name_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct HotelType {
     ///HotelTypeId  酒店类型ID String Y
@@ -220,14 +220,14 @@ pub struct HotelType {
     pub hotel_type_name_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ServiceRank {
     /// SummaryScore 酒店服务总评分
     pub summary_score: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ParkInfo {
     ///title 名称 String(50) Y
@@ -238,7 +238,7 @@ pub struct ParkInfo {
     pub type_: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Tel {
     /// nationCode 国家码 String(30) Y
@@ -253,7 +253,7 @@ pub struct Tel {
     pub type_: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Notice {
     ///Category 分类 String(30) N Hotel:酒店维度 City:城市维度
@@ -268,7 +268,7 @@ pub struct Notice {
     pub text_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct DepositPolicy {
     ///DepositSwitch 是否收取押金 Integer N 1:是, 0:否, null:未知
@@ -287,7 +287,7 @@ pub struct DepositPolicy {
     pub currency: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct CheckinPolicy {
     /// CheckInWay 入住方式 String Y frontdesk:请到前台领取钥匙/门卡 reception:住宿方会有专人等侯迎接    password:住宿方会提供住宿的进门密码 keybox:住宿方会将钥匙存放于隐蔽处，并会在你入住前提供详细说明   keyhide:住宿方会将钥匙存在保管箱内，并会在你入住前提供详细说明  instruction:住宿方会在你入住前提供详细说明  contactus:【注】本酒店/民宿务必提前联系，确认入住事宜，否则可能影响入住     other:其他
@@ -302,7 +302,7 @@ pub struct CheckinPolicy {
     pub check_in_note_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct StayPolicy {
     ///QuietTime 安静时间 String[] Y
@@ -313,14 +313,14 @@ pub struct StayPolicy {
     pub photo_allowed: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RoomBed {
     /// RoomBedInfo 床型信息 RoomBedInfo[] Y 参见RoomBedInfo节点
     pub room_bed_info: Option<Vec<RoomBedInfo>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RoomBedInfo {
     /// RoomDetailBeds 卧室床信息 RoomBedDetail[] Y 参见RoomBedDetail节点
@@ -329,7 +329,7 @@ pub struct RoomBedInfo {
     pub living_room_beds: Option<Vec<RoomBedDetail>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RoomBedDetail {
     /// BedGroups 或分组 BedGroup[] Y BedGroups链表的每个元素之间为“或”的关系 参见BedGroup节点
@@ -338,14 +338,14 @@ pub struct RoomBedDetail {
     pub room_index: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct BedGroup {
     /// BedInfos 和分组 BedInfo[] Y BedInfos链表的每个元素之间为“和”的关系 参见BedInfo节点
     pub bed_infos: Option<Vec<BedInfo>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct BedInfo {
     /// BedTypeId 床型id int N
@@ -360,7 +360,7 @@ pub struct BedInfo {
     pub remark: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct FacilityType {
     /// FacilityTypeId 设施分类Id Long N
@@ -371,7 +371,7 @@ pub struct FacilityType {
     pub facility_info_list: Option<Vec<FacilityInfo>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct FacilityInfo {
     ///FacilityId 设施Id Long N
@@ -388,7 +388,7 @@ pub struct FacilityInfo {
     pub reservation_info: Option<ReservationInfo>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct FeeInfo {
     ///FeeChargeType 设施费用类型 Enum Y Paid：收费；Free：免费；None：未知
@@ -397,7 +397,7 @@ pub struct FeeInfo {
     pub fee_detail: Option<Vec<FeeDetail>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct FeeDetail {
     ///Amount 设施费用金额 f64 Y
@@ -408,7 +408,7 @@ pub struct FeeDetail {
     pub fee_time_type: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct BusinessHourInfo {
     ///OpenDayType 设施营业时间类型 Enum    Y OpenDay：开放时间；CloseDay:关闭时间
@@ -421,7 +421,7 @@ pub struct BusinessHourInfo {
     pub weekly_index: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct AgeLimitInfo {
     ///MinAge 设施使用最小年龄 String  Y
@@ -430,7 +430,7 @@ pub struct AgeLimitInfo {
     pub max_age: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ReservationInfo {
     ///Reserve 设施预约限制 Enum    Y T：需要预约；F：无需预约
@@ -441,7 +441,7 @@ pub struct ReservationInfo {
     pub time_unit: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct HotelCloseTime {
     ///startDay 开始时间 String Y
@@ -454,7 +454,7 @@ pub struct HotelCloseTime {
     pub reason_name: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ChildPolicy {
     ///AllowChildrenToStayV2 是否允许携带儿童入住 String Y 可能的值：true, false, unknown；true时解析ChildPolicy节点的其他信息
@@ -475,7 +475,7 @@ pub struct ChildPolicy {
     pub extra_bed_policy: Option<Vec<ExtraBedPolicy>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ChildBreakfast {
     /// SetSeparately 是否有单独儿童早餐 String Y T有；F无；T时解析ChildBreakfast节点的其他信息
@@ -488,7 +488,7 @@ pub struct ChildBreakfast {
     pub child_breakfast_details: Option<Vec<ChildBreakfastDetail>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ChildBreakfastDetail {
     /// RangeFrom 范围起始 String Y
@@ -499,14 +499,14 @@ pub struct ChildBreakfastDetail {
     pub amount: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ExistingBed {
     /// Fees 收费标准列表 Fee[] Y
     pub fees: Option<Vec<Fee>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Fee {
     ///Amount 收费金额 Amount[] Y 该节点为空时表示价格未知
@@ -519,7 +519,7 @@ pub struct Fee {
     pub range_limit: Option<Vec<RangeLimit>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Amount {
     /// Amount 金额 f64 Y 0为免费
@@ -528,14 +528,14 @@ pub struct Amount {
     pub currency: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct MealInfo {
     ///BreakfastType 早餐类型 Integer Y 0.未知，1.不包含儿童早餐，2.包含儿童早餐
     pub breakfast_type: Option<i32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RangeLimit {
     ///Start 起始值 String Y
@@ -546,7 +546,7 @@ pub struct RangeLimit {
     pub type_: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ExtraBedPolicy {
     ///BedType 加床类型 Integer Y 1： 加床； 2：加婴儿床
@@ -565,7 +565,7 @@ pub struct ExtraBedPolicy {
     pub range_to: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Supplier {
     ///SupplierID  供应商IDString N
@@ -588,7 +588,7 @@ pub struct Supplier {
     pub helpful_tip: Option<HelpfulTip>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct AvailPolicy {
     ///StartDate   特殊政策开始日期    Date Y 格式：yyyy-MM-dd'T'HH:mm:ss'+08:00'；例如：2021-09-15T00:00:00+08:00
@@ -601,7 +601,7 @@ pub struct AvailPolicy {
     pub description_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct HelpfulTip {
     ///StartDate 温馨提示开始日期 Date Y
@@ -614,7 +614,7 @@ pub struct HelpfulTip {
     pub description_en: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Room {
     /// RoomID  房型ID String N 对应动态接口中的RoomId
@@ -656,7 +656,7 @@ pub struct Room {
     pub child_policy: Option<ChildPolicy>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Image {
     ///RoomID 关联的房型ID String Y
@@ -678,7 +678,7 @@ pub struct Image {
     pub locations: Option<Vec<Location>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Location {
     ///WaterMark 是否有水印 Int N 0-无,1-有。默认为有水印图片

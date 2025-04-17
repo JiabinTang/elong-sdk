@@ -4,14 +4,14 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct DataRpResponse {
     /// 酒店列表，包含多个Hotel节点
     pub hotels: Option<Vec<Hotel>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Hotel {
     /// 酒店编号   HotelID 酒店编号 String(8) N
@@ -27,7 +27,7 @@ pub struct Hotel {
     pub gift_packages: Option<Vec<GiftPackage>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Supplier {
     /// HotelCode 酒店编码 String(8) N
@@ -55,7 +55,7 @@ pub struct Supplier {
     pub supplier_type: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct BookingRule {
     /// TypeCode 规则类型 Enum N
@@ -83,7 +83,7 @@ pub struct BookingRule {
     pub end_hour: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Room {
     /// RoomTypeId 销售房型编号 String(8) N 关联RatePlan.RoomTypeIds
@@ -94,7 +94,7 @@ pub struct Room {
     pub status: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RatePlan {
     /// RatePlanId 产品编号 Int N
@@ -203,7 +203,7 @@ pub struct RatePlan {
     pub support_special_invoice: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct GuaranteeRule {
     /// Description 描述 String(255) N
@@ -266,7 +266,7 @@ pub struct GuaranteeRule {
     pub hour: Option<i32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct PrepayRule {
     /// Description 描述 String(255) N
@@ -318,7 +318,7 @@ pub struct PrepayRule {
     pub cash_scale_first_before: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct ValueAdd {
     /// TypeCode 业务代码 String(2) N
@@ -364,7 +364,7 @@ pub struct ValueAdd {
     pub week_set: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Meal {
     /// Type 餐食类型 String(2) N
@@ -422,7 +422,7 @@ pub struct Meal {
     pub week_set: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Gift {
     /// GiftId 送礼编号 Int N
@@ -481,7 +481,7 @@ pub struct Gift {
     pub gift_value: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct HotelGiftDate {
     /// StartDate 礼包开始日期 DateTime N
@@ -490,7 +490,7 @@ pub struct HotelGiftDate {
     pub end_date: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct HotelGiftProductRelation {
     /// RoomTypeIds 关联的房型 String(500) Y
@@ -501,7 +501,7 @@ pub struct HotelGiftProductRelation {
     pub rate_plan_id: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct GiftInfo {
     /// GiftInfo 礼包一级编号 Integer N
@@ -512,7 +512,7 @@ pub struct GiftInfo {
     pub gift_sub_infos: Vec<GiftSubInfo>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct GiftSubInfo {
     /// SubInfo 礼包二级编号 Integer N
@@ -530,7 +530,7 @@ pub struct GiftSubInfo {
     pub sub_info: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct GiftPackage {
     /// PkgProductId 礼包套餐ID Long N
@@ -556,7 +556,7 @@ pub struct GiftPackage {
     pub related_product: Option<RelatedProduct>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Picture {
     /// ImgIndex 礼包图片顺序 Int N
@@ -565,7 +565,7 @@ pub struct Picture {
     pub img_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct XProduct {
     /// XProductId X产品ID Long N
@@ -590,7 +590,7 @@ pub struct XProduct {
     pub appoint_policy: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct RelatedProduct {
     /// RoomTypeId 供应商房型id String N

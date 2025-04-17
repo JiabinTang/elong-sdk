@@ -4,14 +4,14 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct DataRateResponse {
     /// Rates 价格集合 Rate[] Y 包含多个Rate节点
     pub rates: Option<Vec<Rate>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Rate {
     /// HotelID 酒店ID String(8) N 这几个属性是业务主键

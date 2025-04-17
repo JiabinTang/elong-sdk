@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct IncrStateResponse {
     /// States 变化集合 State[] Y
@@ -12,7 +12,7 @@ pub struct IncrStateResponse {
     pub states: Vec<State>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct State {
     /// LastId 增量Id Long N

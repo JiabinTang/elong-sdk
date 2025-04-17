@@ -4,14 +4,14 @@ use crate::elong::error::ElongError;
 
 use super::api_response::{BaseResponse, ElongResponse};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct InventoryResponse {
     ///库存集合
     pub inventories: Vec<Inventory>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Inventory {
     /// HotelID 酒店ID String(8) N 这几个属性是业务主键。 HotelCode关联搜索接口的RatePlan.HotelCode Date表示的是某天的库存。
