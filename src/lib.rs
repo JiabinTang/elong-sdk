@@ -1,3 +1,21 @@
+//! # 艺龙离线数据 SDK
+//!
+//! 这是一个用于与艺龙离线数据交互的 SDK，提供了多种异步接口以获取静态和动态数据。
+//!
+//! ## 模块概览
+//!
+//! - `elong`: 提供与 Elong 平台交互的具体实现。
+//! - `network`: 处理网络请求的底层模块。
+//! - `request`: 定义了所有请求类型。
+//! - `response`: 定义了所有响应类型。
+//! - `types`: 定义了通用的数据类型和结构。
+//!
+//! ## Trait: Elong
+//!
+//! `Elong` trait 定义了与 Elong 平台交互的核心接口，所有方法均为异步方法。
+//!
+//!
+
 use async_trait::async_trait;
 use request::{
     data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
@@ -8,11 +26,11 @@ use request::{
 
 use types::*;
 
-pub mod elong;
 mod network;
+mod types;
+pub mod elong;
 pub mod request;
 pub mod response;
-mod types;
 
 #[async_trait]
 pub trait Elong {

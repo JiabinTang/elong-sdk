@@ -15,6 +15,7 @@ fn create_test_service() -> ElongService {
     ElongService::new()
 }
 
+/// 城市列表
 #[tokio::test]
 async fn test_get_static_city() {
     let service = create_test_service();
@@ -28,6 +29,7 @@ async fn test_get_static_city() {
     assert!(result.is_ok());
 }
 
+/// 酒店列表
 #[tokio::test]
 async fn test_get_static_list() {
     let service = create_test_service();
@@ -47,6 +49,7 @@ async fn test_get_static_list() {
     assert!(result.unwrap().is_success());
 }
 
+/// 酒店信息
 #[tokio::test]
 async fn test_get_static_info() {
     let service = create_test_service();
@@ -63,6 +66,7 @@ async fn test_get_static_info() {
     assert!(result.unwrap().is_success());
 }
 
+/// 产品信息
 #[tokio::test]
 async fn test_get_data_rp() {
     let service = create_test_service();
@@ -77,6 +81,7 @@ async fn test_get_data_rp() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量ID
 #[tokio::test]
 async fn test_get_incr_id() {
     let service = create_test_service();
@@ -94,6 +99,7 @@ async fn test_get_incr_id() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量ID分片
 #[tokio::test]
 async fn test_get_incr_sharding_id() {
     let service = create_test_service();
@@ -111,6 +117,7 @@ async fn test_get_incr_sharding_id() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量状态
 #[tokio::test]
 async fn test_get_incr_state() {
     let service = create_test_service();
@@ -128,6 +135,7 @@ async fn test_get_incr_state() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量状态分片
 #[tokio::test]
 async fn test_get_incr_sharding_state() {
     let service = create_test_service();
@@ -145,6 +153,7 @@ async fn test_get_incr_sharding_state() {
     assert!(result.unwrap().is_success());
 }
 
+/// 房态库存
 #[tokio::test]
 async fn test_get_data_inventory() {
     let service = create_test_service();
@@ -165,6 +174,7 @@ async fn test_get_data_inventory() {
     assert!(result.unwrap().is_success());
 }
 
+/// 产品价格
 #[tokio::test]
 async fn test_get_data_rate() {
     let service = create_test_service();
@@ -185,6 +195,7 @@ async fn test_get_data_rate() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量库存
 #[tokio::test]
 async fn test_get_incr_inv() {
     let service = create_test_service();
@@ -202,6 +213,7 @@ async fn test_get_incr_inv() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量库存分片
 #[tokio::test]
 async fn test_get_incr_sharding_inv() {
     let service = create_test_service();
@@ -219,6 +231,7 @@ async fn test_get_incr_sharding_inv() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量价格
 #[tokio::test]
 async fn test_get_incr_rate() {
     let service = create_test_service();
@@ -236,6 +249,7 @@ async fn test_get_incr_rate() {
     assert!(result.unwrap().is_success());
 }
 
+/// 增量价格分片
 #[tokio::test]
 async fn test_get_incr_sharding_rate() {
     let service = create_test_service();

@@ -231,7 +231,7 @@ pub struct GuaranteeRule {
     /// 用于IsTimeGuarantee==true进行检查。
     pub start_time: Option<String>,
     /// EndTime 到店担保结束时间 Time Y
-    /// [补充]当EndTime小于StartTime的时候，默认从StartTime到次日6点都需要担保。
+    /// 当EndTime小于StartTime的时候，默认从StartTime到次日6点都需要担保。
     pub end_time: Option<String>,
     /// IsTomorrow 到店担保的结束时间是否为第二天 Boolean Y
     /// 0为当天，1为次日
