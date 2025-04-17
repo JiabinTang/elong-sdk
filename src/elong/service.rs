@@ -4,15 +4,10 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
-        incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::*,
-        static_info::StaticInfoRequest, static_list::StaticListRequest,
+        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
     },
     response::{
-        api_response::ElongResponse, data_inventory::InventoryResponse,
-        data_rate::DataRateResponse, data_rp::DataRpResponse, incr_inv::IncrInvResponse,
-        incr_rate::IncrRateResponse, static_city::*, static_info::StaticInfoResponse,
-        static_list::StaticListResponse,
+        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
     },
     types::*,
     Elong,
@@ -94,6 +89,24 @@ impl Elong for ElongService {
         let res: ElongResponse<DataRpResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataRp, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 增量编号
+    async fn get_incr_id(&self, request: IncrIdRequest) -> REIncrIdResp {
+        let res: ElongResponse<IncrIdResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::IncrId, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 增量编号分片
+    async fn get_incr_sharding_id(&self, request: IncrIdRequest) -> REIncrIdResp {
+        let res: ElongResponse<IncrIdResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::IncrShardingId, request)
             .await?;
         Ok(res)
     }

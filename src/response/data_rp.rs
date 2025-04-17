@@ -602,7 +602,6 @@ pub struct RelatedProduct {
 impl BaseResponse for ElongResponse<DataRpResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<DataRpResponse> json: {}", json);
-        // print!("ElongResponse<DataRpResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }

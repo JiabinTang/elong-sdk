@@ -2,6 +2,7 @@ pub mod api_request;
 pub mod data_inventory;
 pub mod data_rate;
 pub mod data_rp;
+pub mod incr_id;
 pub mod incr_inv;
 pub mod incr_rate;
 pub mod static_city;

@@ -1,8 +1,6 @@
 use async_trait::async_trait;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
-    incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest,
-    static_info::StaticInfoRequest, static_list::StaticListRequest,
+    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
 };
 
 use types::*;
@@ -26,6 +24,12 @@ pub trait Elong {
 
     /// 产品详情
     async fn get_data_rp(&self, req: DataRpRequest) -> REDataRpResp;
+
+    /// 增量编号
+    async fn get_incr_id(&self, req: IncrIdRequest) -> REIncrIdResp;
+
+    /// 增量编号分片
+    async fn get_incr_sharding_id(&self, req: IncrIdRequest) -> REIncrIdResp;
 
     /// 库存全量
     async fn get_inventory(&self, req: InventoryRequest) -> REInvResp;
