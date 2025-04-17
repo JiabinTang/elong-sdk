@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use super::api_request::BaseRequest;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct StaticInfoRequest {
     /// 酒店ID，注意：hotel.static.list返回酒店状态HotelStatus非有效时，无需再请求该接口
     #[serde(rename = "HotelId")]

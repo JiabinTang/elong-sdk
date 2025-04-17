@@ -3,7 +3,7 @@ use crate::elong::error::ElongError;
 use super::api_request::BaseRequest;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 #[serde(rename_all = "PascalCase")]
 pub struct StaticListRequest {
     /// 开始时间，格式：yyyy-MM-dd HH:mm:ss

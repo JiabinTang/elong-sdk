@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_request::BaseRequest;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "PascalCase")]
 pub struct DataRateRequest {
     /// HotelIds 酒店编号 String(100) N 最多10个,逗号分隔

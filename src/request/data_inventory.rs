@@ -3,8 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use super::api_request::BaseRequest;
 
-
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 #[serde(rename_all = "PascalCase")]
 pub struct InventoryRequest {
     /// 酒店编号，最多10个，逗号分隔

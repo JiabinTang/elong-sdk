@@ -4,7 +4,7 @@ use crate::elong::error::ElongError;
 
 use super::api_request::BaseRequest;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "PascalCase")]
 pub struct IncrInvRequest {
     // LastId 最后的更新ID Long N
