@@ -4,16 +4,18 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest,
-        incr_rate::IncrRateRequest, static_city::*, static_info::StaticInfoRequest,
-        static_list::StaticListRequest,
+        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
+        incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::*,
+        static_info::StaticInfoRequest, static_list::StaticListRequest,
     },
     response::{
         api_response::ElongResponse, data_inventory::InventoryResponse,
-        data_rate::DataRateResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse,
-        static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse,
+        data_rate::DataRateResponse, data_rp::DataRpResponse, incr_inv::IncrInvResponse,
+        incr_rate::IncrRateResponse, static_city::*, static_info::StaticInfoResponse,
+        static_list::StaticListResponse,
     },
-    Elong, ElongResult,
+    types::*,
+    Elong,
 };
 
 use super::{
@@ -60,8 +62,8 @@ impl ElongService {
 
 #[async_trait]
 impl Elong for ElongService {
-    /// 静态数据 - 城市列表
-    async fn get_static_city(&self, request: StaticCityRequest) -> ElongResult<StaticCityResponse> {
+    /// 城市列表
+    async fn get_static_city(&self, request: StaticCityRequest) -> RECityResp {
         let res: ElongResponse<StaticCityResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticCity, request)
@@ -69,8 +71,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 酒店列表
-    async fn get_static_list(&self, request: StaticListRequest) -> ElongResult<StaticListResponse> {
+    /// 酒店列表
+    async fn get_static_list(&self, request: StaticListRequest) -> REListResp {
         let res: ElongResponse<StaticListResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticList, request)
@@ -78,8 +80,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 酒店详情
-    async fn get_static_info(&self, request: StaticInfoRequest) -> ElongResult<StaticInfoResponse> {
+    /// 酒店详情
+    async fn get_static_info(&self, request: StaticInfoRequest) -> REInfoResp {
         let res: ElongResponse<StaticInfoResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticInfo, request)
@@ -87,8 +89,17 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 库存全量
-    async fn get_inventory(&self, request: InventoryRequest) -> ElongResult<InventoryResponse> {
+    /// 产品详情
+    async fn get_data_rp(&self, request: DataRpRequest) -> REDataRpResp {
+        let res: ElongResponse<DataRpResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::DataRp, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 库存全量
+    async fn get_inventory(&self, request: InventoryRequest) -> REInvResp {
         let res: ElongResponse<InventoryResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataInventory, request)
@@ -96,8 +107,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 库存增量
-    async fn get_incr_inv(&self, request: IncrInvRequest) -> ElongResult<IncrInvResponse> {
+    /// 库存增量
+    async fn get_incr_inv(&self, request: IncrInvRequest) -> REIncrInvResp {
         let res: ElongResponse<IncrInvResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::IncrInv, request)
@@ -105,8 +116,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 库存增量切片
-    async fn get_incr_sharding_inv(&self, request: IncrInvRequest) -> ElongResult<IncrInvResponse> {
+    /// 库存增量切片
+    async fn get_incr_sharding_inv(&self, request: IncrInvRequest) -> REIncrInvResp {
         let res: ElongResponse<IncrInvResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::IncrShardingInv, request)
@@ -114,8 +125,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 价格全量
-    async fn get_data_rate(&self, request: DataRateRequest) -> ElongResult<DataRateResponse> {
+    /// 价格全量
+    async fn get_data_rate(&self, request: DataRateRequest) -> RERateResp {
         let res: ElongResponse<DataRateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataRate, request)
@@ -123,8 +134,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 价格增量
-    async fn get_incr_rate(&self, request: IncrRateRequest) -> ElongResult<IncrRateResponse> {
+    /// 价格增量
+    async fn get_incr_rate(&self, request: IncrRateRequest) -> REIncrRateResp {
         let res: ElongResponse<IncrRateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::IncrRate, request)
@@ -132,11 +143,8 @@ impl Elong for ElongService {
         Ok(res)
     }
 
-    /// 静态数据 - 价格增量分片
-    async fn get_incr_sharding_rate(
-        &self,
-        request: IncrRateRequest,
-    ) -> ElongResult<IncrRateResponse> {
+    /// 价格增量分片
+    async fn get_incr_sharding_rate(&self, request: IncrRateRequest) -> REIncrRateResp {
         let res: ElongResponse<IncrRateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::ShardingRate, request)

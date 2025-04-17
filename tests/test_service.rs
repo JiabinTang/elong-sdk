@@ -1,6 +1,7 @@
 use elong_offline_sdk::elong::service::ElongService;
 use elong_offline_sdk::request::data_inventory::InventoryRequest;
 use elong_offline_sdk::request::data_rate::DataRateRequest;
+use elong_offline_sdk::request::data_rp::DataRpRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
@@ -58,6 +59,20 @@ async fn test_get_static_info() {
     };
 
     let result = service.get_static_info(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+#[tokio::test]
+async fn test_get_data_rp() {
+    let service = create_test_service();
+    let request = DataRpRequest {
+        hotel_ids: "93993637".to_string(),
+        ..Default::default()
+    };
+    let result = service.get_data_rp(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

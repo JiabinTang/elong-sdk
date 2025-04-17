@@ -1,49 +1,47 @@
 use async_trait::async_trait;
-use elong::error::ElongError;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, incr_inv::IncrInvRequest,
-    incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest,
-    static_list::StaticListRequest,
+    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
+    incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest,
+    static_info::StaticInfoRequest, static_list::StaticListRequest,
 };
-use response::{
-    api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse,
-    incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::*,
-    static_info::StaticInfoResponse, static_list::StaticListResponse,
-};
+
+use types::*;
 
 pub mod elong;
 mod network;
 pub mod request;
 pub mod response;
-
-type ElongResult<T> = Result<ElongResponse<T>, ElongError>;
+mod types;
 
 #[async_trait]
 pub trait Elong {
-    /// 静态数据 - 城市列表
-    async fn get_static_city(&self, req: StaticCityRequest) -> ElongResult<StaticCityResponse>;
+    /// 城市列表
+    async fn get_static_city(&self, req: StaticCityRequest) -> RECityResp;
 
-    /// 静态数据 - 酒店列表
-    async fn get_static_list(&self, req: StaticListRequest) -> ElongResult<StaticListResponse>;
+    /// 酒店列表
+    async fn get_static_list(&self, req: StaticListRequest) -> REListResp;
 
-    /// 静态数据 - 酒店详情
-    async fn get_static_info(&self, req: StaticInfoRequest) -> ElongResult<StaticInfoResponse>;
+    /// 酒店详情
+    async fn get_static_info(&self, req: StaticInfoRequest) -> REInfoResp;
 
-    /// 静态数据 - 库存全量
-    async fn get_inventory(&self, req: InventoryRequest) -> ElongResult<InventoryResponse>;
+    /// 产品详情
+    async fn get_data_rp(&self, req: DataRpRequest) -> REDataRpResp;
 
-    /// 静态数据 - 库存增量
-    async fn get_incr_inv(&self, req: IncrInvRequest) -> ElongResult<IncrInvResponse>;
+    /// 库存全量
+    async fn get_inventory(&self, req: InventoryRequest) -> REInvResp;
 
-    /// 静态数据 - 库存增量分片
-    async fn get_incr_sharding_inv(&self, req: IncrInvRequest) -> ElongResult<IncrInvResponse>;
+    /// 库存增量
+    async fn get_incr_inv(&self, req: IncrInvRequest) -> REIncrInvResp;
 
-    /// 静态数据 - 价格全量
-    async fn get_data_rate(&self, req: DataRateRequest) -> ElongResult<DataRateResponse>;
+    /// 库存增量分片
+    async fn get_incr_sharding_inv(&self, req: IncrInvRequest) -> REIncrInvResp;
 
-    /// 静态数据 - 价格增量
-    async fn get_incr_rate(&self, req: IncrRateRequest) -> ElongResult<IncrRateResponse>;
+    /// 价格全量
+    async fn get_data_rate(&self, req: DataRateRequest) -> RERateResp;
 
-    /// 静态数据 - 价格增量分片
-    async fn get_incr_sharding_rate(&self, req: IncrRateRequest) -> ElongResult<IncrRateResponse>;
+    /// 价格增量
+    async fn get_incr_rate(&self, req: IncrRateRequest) -> REIncrRateResp;
+
+    /// 价格增量分片
+    async fn get_incr_sharding_rate(&self, req: IncrRateRequest) -> REIncrRateResp;
 }
