@@ -1,6 +1,9 @@
 use async_trait::async_trait;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest,
+    incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest,
+    incr_state::IncrStateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest,
+    static_list::StaticListRequest,
 };
 
 use types::*;
@@ -30,6 +33,12 @@ pub trait Elong {
 
     /// 增量编号分片
     async fn get_incr_sharding_id(&self, req: IncrIdRequest) -> REIncrIdResp;
+
+    /// 状态增量
+    async fn get_incr_state(&self, req: IncrStateRequest) -> REIncrStateResp;
+
+    /// 状态增量分片
+    async fn get_incr_sharding_state(&self, req: IncrStateRequest) -> REIncrStateResp;
 
     /// 库存全量
     async fn get_inventory(&self, req: InventoryRequest) -> REInvResp;

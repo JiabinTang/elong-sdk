@@ -54,7 +54,7 @@ pub enum ApiMethod {
     /// hotel.incr.sharding.id      国内酒店-分片增量编号
     IncrShardingId,
     /// hotel.incr.sharding.state   国内酒店-分片状态增量 (不建议使用)
-    ShardingState,
+    IncrShardingState,
     /// hotel.data.validate         国内酒店-数据验证
     DataValidate,
     /// hotel.data.booking          国内酒店-预定数据
@@ -109,7 +109,7 @@ impl ApiMethod {
             ApiMethod::ShardingRate => "hotel.incr.sharding.rate",
             ApiMethod::IncrId => "hotel.incr.id",
             ApiMethod::IncrShardingId => "hotel.incr.sharding.id",
-            ApiMethod::ShardingState => "hotel.incr.sharding.state",
+            ApiMethod::IncrShardingState => "hotel.incr.sharding.state",
             ApiMethod::DataValidate => "hotel.data.validate",
             ApiMethod::DataBooking => "hotel.data.booking",
             ApiMethod::CreditCardValidate => "common.creditcard.validate",

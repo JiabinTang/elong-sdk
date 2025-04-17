@@ -1,6 +1,7 @@
 use crate::elong::error::ElongError;
 use crate::response::data_rp::DataRpResponse;
 use crate::response::incr_id::IncrIdResponse;
+use crate::response::incr_state::IncrStateResponse;
 use crate::response::{
     api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse,
     incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::StaticCityResponse,
@@ -13,6 +14,7 @@ pub type REListResp = Result<ElongResponse<StaticListResponse>, ElongError>;
 pub type REInfoResp = Result<ElongResponse<StaticInfoResponse>, ElongError>;
 pub type REDataRpResp = Result<ElongResponse<DataRpResponse>, ElongError>;
 pub type REIncrIdResp = Result<ElongResponse<IncrIdResponse>, ElongError>;
+pub type REIncrStateResp = Result<ElongResponse<IncrStateResponse>, ElongError>;
 pub type REInvResp = Result<ElongResponse<InventoryResponse>, ElongError>;
 pub type REIncrInvResp = Result<ElongResponse<IncrInvResponse>, ElongError>;
 pub type RERateResp = Result<ElongResponse<DataRateResponse>, ElongError>;

@@ -4,10 +4,10 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
+        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
     },
     response::{
-        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
+        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
     },
     types::*,
     Elong,
@@ -107,6 +107,24 @@ impl Elong for ElongService {
         let res: ElongResponse<IncrIdResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::IncrShardingId, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 状态增量
+    async fn get_incr_state(&self, request: IncrStateRequest) -> REIncrStateResp {
+        let res: ElongResponse<IncrStateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::IncrState, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 状态增量分片
+    async fn get_incr_sharding_state(&self, request: IncrStateRequest) -> REIncrStateResp {
+        let res: ElongResponse<IncrStateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::IncrShardingState, request)
             .await?;
         Ok(res)
     }

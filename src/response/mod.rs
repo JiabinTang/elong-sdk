@@ -8,3 +8,4 @@ pub mod incr_rate;
 pub mod static_city;
 pub mod static_info;
 pub mod static_list;
+pub mod incr_state;
