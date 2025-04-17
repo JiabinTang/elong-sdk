@@ -2,6 +2,12 @@
 name = "elong-offline-sdk"
 version = "0.1.0"
 edition = "2021"
+authors = ["唐加彬 me@tangjiabin.cn"]
+description = "用于与艺龙离线数据异步交互的 SDK"
+license = "MIT"
+repository = "https://github.com/JiabinTang/elong-offline-sdk"
+homepage = "https://github.com/JiabinTang/elong-offline-sdk"
+readme = "README.md"
 
 [dependencies]
 async-trait = "0.1.88"
