@@ -28,6 +28,22 @@ pub struct City {
     pub country_name: String,
     pub country_name_en: String,
     pub country_code: String,
+    ///Locations Location数据    Location[] Y   Location数据，包含行政区、商圈、标示物
+    pub locations: Option<Vec<Location>>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "PascalCase")]
+pub struct Location {
+    /// LocationID LocationID String N
+    #[serde(rename = "LocationID")]
+    pub location_id: String,
+    /// LocationName Location中文名称 String N
+    pub location_name: String,
+    /// LocationNameEn Location英文名称 String Y
+    pub location_name_en: Option<String>,
+    /// LocationType Location类型 Int N 1:行政区2:商圈3:标示物
+    pub location_type: i32,
 }
 
 impl BaseResponse for ElongResponse<StaticCityResponse> {

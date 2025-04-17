@@ -21,6 +21,8 @@ async fn test_get_static_city() {
     let service = create_test_service();
 
     let request = StaticCityRequest {
+        country_type: Some(1),
+        is_need_location: Some(true),
         ..Default::default()
     };
 
