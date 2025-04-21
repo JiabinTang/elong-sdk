@@ -4,10 +4,10 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
+        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
     },
     response::{
-        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
+        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
     },
     types::*,
     Elong,
@@ -179,6 +179,15 @@ impl Elong for ElongService {
         let res: ElongResponse<IncrRateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::ShardingRate, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 数据校验
+    async fn data_validate(&self, request: DataValidateRequest) -> REDataValidateResp {
+        let res: ElongResponse<DataValidateResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::DataValidate, request)
             .await?;
         Ok(res)
     }

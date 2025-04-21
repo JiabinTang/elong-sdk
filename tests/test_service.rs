@@ -2,6 +2,7 @@ use elong_offline_sdk::elong::service::ElongService;
 use elong_offline_sdk::request::data_inventory::InventoryRequest;
 use elong_offline_sdk::request::data_rate::DataRateRequest;
 use elong_offline_sdk::request::data_rp::DataRpRequest;
+use elong_offline_sdk::request::data_validate::DataValidateRequest;
 use elong_offline_sdk::request::incr_id::IncrIdRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
@@ -263,6 +264,31 @@ async fn test_get_incr_sharding_rate() {
     };
 
     let result = service.get_incr_sharding_rate(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 数据验证
+#[tokio::test]
+async fn test_data_validate() {
+    let service = create_test_service();
+
+    let request = DataValidateRequest {
+        arrival_date: "2025-04-22".to_string(),
+        departure_date: "2025-04-23".to_string(),
+        earliest_arrival_time: "2025-04-22 14:00:00".to_string(),
+        latest_arrival_time: "2025-04-22 18:00:00".to_string(),
+        hotel_id: "24600325".to_string(),
+        room_type_id: "0001".to_string(),
+        rate_plan_id: 415276135,
+        total_price: 244.44,
+        number_of_rooms: 1,
+        ..Default::default()
+    };
+
+    let result = service.data_validate(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
