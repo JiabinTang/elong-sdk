@@ -4,10 +4,18 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::*, static_info::StaticInfoRequest, static_list::StaticListRequest
+        data_booking::DataBookingRequest, data_inventory::InventoryRequest,
+        data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest,
+        incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest,
+        incr_state::IncrStateRequest, static_city::*, static_info::StaticInfoRequest,
+        static_list::StaticListRequest,
     },
     response::{
-        api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*, static_info::StaticInfoResponse, static_list::StaticListResponse
+        api_response::ElongResponse, data_booking::DataBookingResponse,
+        data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
+        data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse,
+        incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*,
+        static_info::StaticInfoResponse, static_list::StaticListResponse,
     },
     types::*,
     Elong,
@@ -188,6 +196,15 @@ impl Elong for ElongService {
         let res: ElongResponse<DataValidateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::DataValidate, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 预订数据
+    async fn data_booking(&self, request: DataBookingRequest) -> REDataBookingResp {
+        let res: ElongResponse<DataBookingResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::DataBooking, request)
             .await?;
         Ok(res)
     }

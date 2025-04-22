@@ -1,4 +1,5 @@
 use elong_offline_sdk::elong::service::ElongService;
+use elong_offline_sdk::request::data_booking::DataBookingRequest;
 use elong_offline_sdk::request::data_inventory::InventoryRequest;
 use elong_offline_sdk::request::data_rate::DataRateRequest;
 use elong_offline_sdk::request::data_rp::DataRpRequest;
@@ -289,6 +290,29 @@ async fn test_data_validate() {
     };
 
     let result = service.data_validate(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 预定数据
+#[tokio::test]
+async fn test_data_booking() {
+    let service = create_test_service();
+
+    let request = DataBookingRequest {
+        arrival_date: "2025-04-23".to_string(),
+        departure_date:"2025-04-24".to_string(),
+        hotel_id: "26333143".to_string(),
+        hotel_code: "26548651".to_string(),
+        room_type_id: "0003".to_string(),
+        rate_plan_id: 390911172,
+        payment_type: "Prepay".to_string(),
+        ..Default::default()
+    };
+
+    let result = service.data_booking(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

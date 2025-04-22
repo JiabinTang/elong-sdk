@@ -1,4 +1,5 @@
 use crate::elong::error::ElongError;
+use crate::response::data_booking::DataBookingResponse;
 use crate::response::data_rp::DataRpResponse;
 use crate::response::data_validate::DataValidateResponse;
 use crate::response::incr_id::IncrIdResponse;
@@ -21,3 +22,4 @@ pub type REIncrInvResp = Result<ElongResponse<IncrInvResponse>, ElongError>;
 pub type RERateResp = Result<ElongResponse<DataRateResponse>, ElongError>;
 pub type REIncrRateResp = Result<ElongResponse<IncrRateResponse>, ElongError>;
 pub type REDataValidateResp = Result<ElongResponse<DataValidateResponse>, ElongError>;
+pub type REDataBookingResp = Result<ElongResponse<DataBookingResponse>, ElongError>;

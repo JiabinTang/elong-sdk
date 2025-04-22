@@ -18,7 +18,7 @@
 
 use async_trait::async_trait;
 use request::{
-    data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+    data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::StaticCityRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
 };
 
 use types::*;
@@ -75,4 +75,7 @@ pub trait Elong {
 
     /// 数据验证
     async fn data_validate(&self, req: DataValidateRequest) -> REDataValidateResp;
+
+    /// 预订数据
+    async fn data_booking(&self, req: DataBookingRequest) -> REDataBookingResp;
 }

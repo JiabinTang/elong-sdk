@@ -1,4 +1,5 @@
 pub mod api_response;
+pub mod data_booking;
 pub mod data_inventory;
 pub mod data_rate;
 pub mod data_rp;
