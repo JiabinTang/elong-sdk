@@ -284,7 +284,7 @@ pub struct DepositPolicy {
     ///RefundTime 押金退还时间 Integer Y 0:当日退还，1:一周内退还，2:两周内退还
     pub refund_time: Option<i32>,
     ///Currency 押金币种 String N 默认RMB
-    pub currency: String,
+    pub currency: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -512,7 +512,7 @@ pub struct Fee {
     ///Amount 收费金额 Amount[] Y 该节点为空时表示价格未知
     pub amount: Option<Vec<Amount>>,
     ///ChargeFrequency 收费频率 String Y Daily每晚；PerStay每次入住
-    pub charge_frequency: Option<String>,
+    pub charge_frequency: Option<i32>,
     ///ChargeUnit 收费单位 String Y PerPerson每人
     pub charge_unit: Option<String>,
     ///RangeLimit 使用儿童范围 RangeLimit[] Y
@@ -554,11 +554,11 @@ pub struct ExtraBedPolicy {
     ///ChargeFrequency 收费频率 Integer Y 1：每晚 2：每次入住
     pub charge_frequency: Option<i32>,
     ///ChargeType 收费类型 String Y 1：明确价格；2：占房费比
-    pub charge_type: Option<String>,
+    pub charge_type: Option<i32>,
     ///Currency 加床费用币种 String Y
     pub currency: Option<String>,
     ///Fee 收费金额或比例 f64 Y
-    pub fee: Option<String>,
+    pub fee: Option<f64>,
     ///RangeFrom 年龄范围左 String Y
     pub range_from: Option<String>,
     ///RangeTo 年龄范围右 String Y
