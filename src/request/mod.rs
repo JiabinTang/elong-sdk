@@ -11,3 +11,4 @@ pub mod incr_state;
 pub mod static_city;
 pub mod static_info;
 pub mod static_list;
+pub mod static_grade;
