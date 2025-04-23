@@ -1,3 +1,4 @@
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 use crate::elong::error::ElongError;
@@ -114,15 +115,15 @@ pub struct Rate {
     /// Status 状态 Boolean N false--无效、true--有效
     pub status: bool,
     /// Member 平日卖价 Decimal N -1代表此房无价，无价和满房都不能进行预订
-    pub member: f64,
+    pub member: Decimal,
     /// Weekend 周末卖价 Decimal N 同上，在周末时使用此价格，周末设置参考hotel.data.rp接口
-    pub weekend: f64,
+    pub weekend: Decimal,
     /// MemberCost 平日结算价 Decimal N 同上，开通了结算价模式的接入方才可以使用
-    pub member_cost: f64,
+    pub member_cost: Decimal,
     /// WeekendCost 周末结算价 Decimal N 同上，开通了结算价模式的接入方才可以使用
-    pub weekend_cost: f64,
+    pub weekend_cost: Decimal,
     /// AddBed 加床价 Decimal Y V1.01新增 -1代表不能加床，0-免费加床，大于0表示加床的费用
-    pub add_bed: Option<f64>,
+    pub add_bed: Option<Decimal>,
     /// PriceID 价格ID Long Y V1.08新增
     pub price_id: Option<i64>,
     /// CurrencyCode 货币类型 String Y V1.08新增参考Currency
@@ -144,7 +145,7 @@ pub struct UsedPromotionDayRoomValue {
 #[serde(rename_all = "PascalCase")]
 pub struct PromotionDetail {
     /// Amount 促销金额 Decimal Y
-    pub amount: Option<f64>,
+    pub amount: Option<Decimal>,
     /// PromotionType 促销类型 Int Y 促销类型 9:立减
     pub promotion_type: Option<i32>,
 }
@@ -229,15 +230,15 @@ pub struct LadderParse {
     /// 对客展示建议直接使用具体扣费金额：AmountRmb（兜底当扣费金额AmountRmb大于订单金额时，展示不可取消）
     pub cut_type: i32,
     /// CutValue 扣费值 Decimal N 原始币种
-    pub cut_value: f64,
+    pub cut_value: Decimal,
     /// Amount 扣费值 Decimal N 国际现付的是原币，预付对客的是人民币，预付对酒店的是原币。
-    pub amount: f64,
+    pub amount: Decimal,
     /// ShortDesc 短文案 String Y
     pub short_desc: Option<String>,
     /// AmountRmb 扣费值 Decimal N 人民币
-    pub amount_rmb: f64,
+    pub amount_rmb: Decimal,
     /// ExchangeRate 汇率 Decimal Y
-    pub exchange_rate: Option<f64>,
+    pub exchange_rate: Option<Decimal>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]

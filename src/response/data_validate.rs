@@ -1,3 +1,4 @@
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 use crate::elong::error::ElongError;
@@ -12,7 +13,7 @@ pub struct DataValidateResponse {
     /// ErrorMessage 具体结果信息 String(255) Y V1.02新增
     pub error_message: Option<String>,
     /// GuaranteeRate 担保金额 Decimal Y 如果是担保订单才有这个值
-    pub guarantee_rate: Option<f64>,
+    pub guarantee_rate: Option<Decimal>,
     /// CurrencyCode 担保金额的货币类型 Enum Y 参考Currency
     pub currency_code: Option<String>,
     /// CancelTime 最晚取消时间 DateTime Y 担保订单可取消的时间，如果返回的时间小于当前时间，则代表此订单不可变更取消
@@ -20,7 +21,7 @@ pub struct DataValidateResponse {
     /// FreeCancelTime 免费取消时间 DateTime Y V1.33新增
     pub free_cancel_time: Option<String>,
     /// PenaltyAmount 罚金金额 Decimal Y V1.33新增货币类型为人民币，只代表取消时间处于免费取消时间跟最晚取消时间之间产生的罚金金额，早于免费取消时间不收罚金，晚于最晚取消100%罚金
-    pub penalty_amount: Option<f64>,
+    pub penalty_amount: Option<Decimal>,
     /// interValidateInfo 国际验证详情 Element N 参考interValidateInfo节点，仅用于国际及港澳台酒店，大陆酒店无需关注
     pub inter_validate_info: Option<Vec<InterValidateInfo>>,
 }
@@ -64,9 +65,9 @@ pub struct RatePlanInfo {
     /// RestInventoryCount 剩余房间数 String Y 仅用于国际及港澳台酒店，大陆酒店无需关注。
     pub rest_inventory_count: Option<String>,
     /// ExtraPersonFee 额外人员费用 Decimal Y 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub extra_person_fee: Option<f64>,
+    pub extra_person_fee: Option<Decimal>,
     /// ExtraPersonFeeRMB 额外人员费用(人民币) Decimal Y 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub extra_person_fee_rmb: Option<f64>,
+    pub extra_person_fee_rmb: Option<Decimal>,
     /// BedGroups 床型信息 BedGroup[] Y 参考BedGroup节点，仅用于国际及港澳台酒店，大陆酒店无需关注。
     pub bed_groups: Option<Vec<BedGroup>>,
     /// AdditionalTax 另付税和服务费 AdditionalTax Y 参考AdditionalTax节点，仅用于国际及港澳台酒店，大陆酒店无需关注。
@@ -112,9 +113,9 @@ pub struct OrderHotel {
 #[serde(rename_all = "PascalCase")]
 pub struct RoomRateNightlyRate {
     /// Rate 每晚每间房价(含税费) Decimal N 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub rate: f64,
+    pub rate: Decimal,
     /// MinRate 最小价(不含税费) Decimal N 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub min_rate: f64,
+    pub min_rate: Decimal,
     /// Date 日期 Date N 仅用于国际及港澳台酒店，大陆酒店无需关注。
     pub date: String,
 }
@@ -123,9 +124,9 @@ pub struct RoomRateNightlyRate {
 #[serde(rename_all = "PascalCase")]
 pub struct CancelPolicy {
     /// Penalty 罚金 Decimal N 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub penalty: f64,
+    pub penalty: Decimal,
     /// PenaltyRMB 罚金(人民币) Decimal N 仅用于国际及港澳台酒店，大陆酒店无需关注。
-    pub penalty_rmb: f64,
+    pub penalty_rmb: Decimal,
     /// DateFrom 取消开始时间 Date N 仅用于国际及港澳台酒店，大陆酒店无需关注。
     pub date_from: String,
     /// DateTo 取消结束时间 Date N 仅用于国际及港澳台酒店，大陆酒店无需关注。
@@ -162,9 +163,9 @@ pub struct BedType {
 #[serde(rename_all = "PascalCase")]
 pub struct AdditionalTax {
     /// TotalAmountRmb 另付税和服务费总额(人民币) Decimal Y
-    pub total_amount_rmb: Option<f64>,
+    pub total_amount_rmb: Option<Decimal>,
     /// TotalAmountPaid 另付税和服务费总额(支付币) Decimal Y
-    pub total_amount_paid: Option<f64>,
+    pub total_amount_paid: Option<Decimal>,
     /// AdditionalTaxItems 另付税和服务费明细 AdditionalTaxItem[] Y 参考AdditionalTaxItem节点
     pub additional_tax_items: Option<Vec<AdditionalTaxItem>>,
 }
@@ -175,7 +176,7 @@ pub struct AdditionalTaxItem {
        /// Description 另付税和服务费明细描述 String Y
        pub description: Option<String>,
        /// Amount 另付税和服务费明细金额 Decimal Y
-       pub amount: Option<f64>,
+       pub amount: Option<Decimal>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

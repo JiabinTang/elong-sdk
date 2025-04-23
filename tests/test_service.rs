@@ -184,11 +184,11 @@ async fn test_get_data_rate() {
     let service = create_test_service();
 
     let request = DataRateRequest {
-        hotel_ids: "93993637".to_string(),
+        hotel_ids: "26315956".to_string(),
         hotel_codes: None,
         payment_type: "All".to_string(),
-        start_date: "2025-04-16".to_string(),
-        end_date: "2025-04-16".to_string(),
+        start_date: "2025-04-23".to_string(),
+        end_date: "2025-04-23".to_string(),
         invoice_mode: None,
     };
 
@@ -277,10 +277,10 @@ async fn test_data_validate() {
     let service = create_test_service();
 
     let request = DataValidateRequest {
-        arrival_date: "2025-04-22".to_string(),
-        departure_date: "2025-04-23".to_string(),
-        earliest_arrival_time: "2025-04-22 14:00:00".to_string(),
-        latest_arrival_time: "2025-04-22 18:00:00".to_string(),
+        arrival_date: "2025-04-25".to_string(),
+        departure_date: "2025-04-26".to_string(),
+        earliest_arrival_time: "2025-04-25 14:00:00".to_string(),
+        latest_arrival_time: "2025-04-26 18:00:00".to_string(),
         hotel_id: "24600325".to_string(),
         room_type_id: "0001".to_string(),
         rate_plan_id: 415276135,

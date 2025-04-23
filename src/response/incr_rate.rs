@@ -1,3 +1,4 @@
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 use crate::elong::error::ElongError;
@@ -35,15 +36,15 @@ pub struct Rate {
     /// Status 状态 Boolean N 已废弃，总是返回true，返回的都是有效价格，请注意清理本地无效价格
     pub status: bool,
     /// Member 平日卖价 Decimal N -1代表此房无价，无价和满房都不能进行预订
-    pub member: f64,
+    pub member: Decimal,
     /// Weekend 周末卖价 Decimal N 同上
-    pub weekend: f64,
+    pub weekend: Decimal,
     /// MemberCost 平日结算价 Decimal N 同上，开通了结算价模式的接入方才可以使用
-    pub member_cost: f64,
+    pub member_cost: Decimal,
     /// WeekendCost 周末结算价 Decimal N 同上，开通了结算价模式的接入方才可以使用
-    pub weekend_cost: f64,
+    pub weekend_cost: Decimal,
     /// AddBed 加床价 Decimal Y V1.01新增 -1代表不能加床，0-免费加床，大于0表示加床的费用
-    pub add_bed: Option<f64>,
+    pub add_bed: Option<Decimal>,
     /// PriceID 价格ID Long Y V1.08新增
     #[serde(rename = "PriceID")]
     pub price_id: Option<i64>,

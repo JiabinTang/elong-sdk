@@ -512,7 +512,7 @@ pub struct Fee {
     ///Amount 收费金额 Amount[] Y 该节点为空时表示价格未知
     pub amount: Option<Vec<Amount>>,
     ///ChargeFrequency 收费频率 String Y Daily每晚；PerStay每次入住
-    pub charge_frequency: Option<i32>,
+    pub charge_frequency: Option<String>,
     ///ChargeUnit 收费单位 String Y PerPerson每人
     pub charge_unit: Option<String>,
     ///RangeLimit 使用儿童范围 RangeLimit[] Y

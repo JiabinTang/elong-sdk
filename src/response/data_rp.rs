@@ -1,3 +1,4 @@
+use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 use crate::elong::error::ElongError;
@@ -302,7 +303,7 @@ pub struct PrepayRule {
     /// DeductFeesBefore为1表示扣款，0表示不扣款。
     pub deduct_fees_before: Option<i32>,
     /// DeductNumBefore 时间点前扣费的金额或比例 Decimal Y
-    pub deduct_num_before: Option<f64>,
+    pub deduct_num_before: Option<Decimal>,
     /// CashScaleFirstAfter 时间点后扣款类型 Enum Y
     /// Money：金额 Percent：比例 FristNight：首晚
     pub cash_scale_first_after: Option<String>,
@@ -312,7 +313,7 @@ pub struct PrepayRule {
     /// 如果CashScaleFirstAfter为FristNight，则返回-1，没有意义
     pub deduct_fees_after: Option<i32>,
     /// DeductNumAfter 时间点后扣费的金额或比例 Decimal Y
-    pub deduct_num_after: Option<f64>,
+    pub deduct_num_after: Option<Decimal>,
     /// CashScaleFirstBefore 时间点前扣款类型 Enum Y
     /// Money：金额 Percent：比例 FristNight：首晚
     pub cash_scale_first_before: Option<String>,
@@ -344,7 +345,7 @@ pub struct ValueAdd {
     /// Price 单价 Decimal Y
     /// 视PriceOption表示金额或比例，比例值保存的百分数，不是最终的小数，
     /// 例如 20%， 则该字段保存为20。
-    pub price: Option<f64>,
+    pub price: Option<Decimal>,
     /// IsExtAdd 是否单加 Boolean N
     /// 目前只有早餐服务该字段有意义。
     pub is_ext_add: bool,
@@ -354,7 +355,7 @@ pub struct ValueAdd {
     /// ExtPrice 单加单价 Decimal Y
     /// 视 extOption 不同表示金额或比例值, 比例值保存的百分数，不是最终的小数，
     /// 例如 20%， 则该字段保存为20。
-    pub ext_price: Option<f64>,
+    pub ext_price: Option<Decimal>,
     /// StartDate 开始日期 Date Y
     /// 特殊早餐有效日期。
     pub start_date: Option<String>,
