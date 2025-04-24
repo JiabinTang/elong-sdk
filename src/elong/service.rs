@@ -4,10 +4,10 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::*, static_grade::StaticGradeRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+        data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_brand::StaticBrandRequest, static_city::*, static_grade::StaticGradeRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
     },
     response::{
-        api_response::ElongResponse, data_booking::DataBookingResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_city::*, static_grade::StaticGradeResponse, static_info::StaticInfoResponse, static_list::StaticListResponse
+        api_response::ElongResponse, data_booking::DataBookingResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse, static_info::StaticInfoResponse, static_list::StaticListResponse
     },
     types::*,
     Elong,
@@ -89,6 +89,15 @@ impl Elong for ElongService {
         let res: ElongResponse<StaticGradeResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticGrade, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 酒店品牌
+    async fn get_static_brand(&self, request: StaticBrandRequest) -> REBrandResp {
+        let res: ElongResponse<StaticBrandResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::StaticBrand, request)
             .await?;
         Ok(res)
     }

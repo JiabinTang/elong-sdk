@@ -8,6 +8,7 @@ use elong_offline_sdk::request::incr_id::IncrIdRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::incr_state::IncrStateRequest;
+use elong_offline_sdk::request::static_brand::StaticBrandRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_grade::StaticGradeRequest;
 use elong_offline_sdk::request::static_info::StaticInfoRequest;
@@ -87,6 +88,23 @@ async fn test_get_static_grade(){
     assert!(result.unwrap().is_success());
 }
 
+/// 酒店品牌
+#[tokio::test]
+async fn test_get_static_brand() {
+    let service = create_test_service();
+
+    let request = StaticBrandRequest {
+        status: Some(0),
+        page_size: 200,
+        page_index: 1,
+    };
+
+    let result = service.get_static_brand(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
 
 /// 产品信息
 #[tokio::test]

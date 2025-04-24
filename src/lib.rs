@@ -18,7 +18,7 @@
 
 use async_trait::async_trait;
 use request::{
-    data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_city::StaticCityRequest, static_grade::StaticGradeRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+    data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_brand::StaticBrandRequest, static_city::StaticCityRequest, static_grade::StaticGradeRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
 };
 
 use types::*;
@@ -42,6 +42,9 @@ pub trait Elong {
 
     /// 点评评分
     async fn get_static_grade(&self,req: StaticGradeRequest) -> REGradeResp;
+
+    /// 酒店品牌
+    async fn get_static_brand(&self, req: StaticBrandRequest) -> REBrandResp;
 
     /// 产品详情
     async fn get_data_rp(&self, req: DataRpRequest) -> REDataRpResp;
