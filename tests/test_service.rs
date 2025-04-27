@@ -11,6 +11,7 @@ use elong_offline_sdk::request::incr_state::IncrStateRequest;
 use elong_offline_sdk::request::static_brand::StaticBrandRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_grade::StaticGradeRequest;
+use elong_offline_sdk::request::static_group::StaticGroupRequest;
 use elong_offline_sdk::request::static_info::StaticInfoRequest;
 use elong_offline_sdk::request::static_list::StaticListRequest;
 use elong_offline_sdk::Elong;
@@ -100,6 +101,24 @@ async fn test_get_static_brand() {
     };
 
     let result = service.get_static_brand(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 酒店集团
+#[tokio::test]
+async fn test_get_static_group() {
+    let service = create_test_service();
+
+    let request = StaticGroupRequest {
+        status: Some(0),
+        page_size: 200,
+        page_index: 1,
+    };
+
+    let result = service.get_static_group(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
