@@ -1,5 +1,6 @@
 use crate::elong::error::ElongError;
 
+use crate::response::incr_order::IncrOrderResponse;
 use crate::response::{
     api_response::ElongResponse, data_booking::DataBookingResponse,
     data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
@@ -31,3 +32,4 @@ pub type REDictionaryResp = Result<ElongResponse<DictionaryResponse>, ElongError
 pub type REOrderCreateResp = Result<ElongResponse<OrderCreateResponse>, ElongError>;
 pub type REOrderPayResp = Result<ElongResponse<OrderPayResponse>, ElongError>;
 pub type REOrderPayConfirmResp = Result<ElongResponse<OrderPayConfirmResponse>, ElongError>;
+pub type REIncrOrderResp = Result<ElongResponse<IncrOrderResponse>, ElongError>;

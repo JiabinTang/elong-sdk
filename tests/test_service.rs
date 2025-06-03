@@ -1,25 +1,26 @@
-use elong_offline_sdk::elong::endpoints::ApiEndpoint;
-use elong_offline_sdk::elong::service::ElongService;
-use elong_offline_sdk::request::data_booking::DataBookingRequest;
-use elong_offline_sdk::request::data_inventory::InventoryRequest;
-use elong_offline_sdk::request::data_rate::DataRateRequest;
-use elong_offline_sdk::request::data_rp::DataRpRequest;
-use elong_offline_sdk::request::data_validate::DataValidateRequest;
-use elong_offline_sdk::request::dictionary::DictionaryRequest;
-use elong_offline_sdk::request::incr_id::IncrIdRequest;
-use elong_offline_sdk::request::incr_inv::IncrInvRequest;
-use elong_offline_sdk::request::incr_rate::IncrRateRequest;
-use elong_offline_sdk::request::incr_state::IncrStateRequest;
-use elong_offline_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
-use elong_offline_sdk::request::order_pay::OrderPayRequest;
-use elong_offline_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
-use elong_offline_sdk::request::static_brand::StaticBrandRequest;
-use elong_offline_sdk::request::static_city::StaticCityRequest;
-use elong_offline_sdk::request::static_grade::StaticGradeRequest;
-use elong_offline_sdk::request::static_group::StaticGroupRequest;
-use elong_offline_sdk::request::static_info::StaticInfoRequest;
-use elong_offline_sdk::request::static_list::StaticListRequest;
-use elong_offline_sdk::Elong;
+use elong_sdk::elong::endpoints::ApiEndpoint;
+use elong_sdk::elong::service::ElongService;
+use elong_sdk::request::data_booking::DataBookingRequest;
+use elong_sdk::request::data_inventory::InventoryRequest;
+use elong_sdk::request::data_rate::DataRateRequest;
+use elong_sdk::request::data_rp::DataRpRequest;
+use elong_sdk::request::data_validate::DataValidateRequest;
+use elong_sdk::request::dictionary::DictionaryRequest;
+use elong_sdk::request::incr_id::IncrIdRequest;
+use elong_sdk::request::incr_inv::IncrInvRequest;
+use elong_sdk::request::incr_order::IncrOrderRequest;
+use elong_sdk::request::incr_rate::IncrRateRequest;
+use elong_sdk::request::incr_state::IncrStateRequest;
+use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
+use elong_sdk::request::order_pay::OrderPayRequest;
+use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
+use elong_sdk::request::static_brand::StaticBrandRequest;
+use elong_sdk::request::static_city::StaticCityRequest;
+use elong_sdk::request::static_grade::StaticGradeRequest;
+use elong_sdk::request::static_group::StaticGroupRequest;
+use elong_sdk::request::static_info::StaticInfoRequest;
+use elong_sdk::request::static_list::StaticListRequest;
+use elong_sdk::Elong;
 
 fn create_test_service() -> ElongService {
     let mut service = ElongService::new();
@@ -517,6 +518,23 @@ async fn test_order_pay_confirm() {
     };
 
     let result = service.order_pay_confirm(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单增量
+#[tokio::test]
+async fn test_order_incr() {
+    let service = create_test_service();
+
+    let request = IncrOrderRequest {
+        last_id: 0,
+        count: Some(1000),
+    };
+
+    let result = service.order_incr(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

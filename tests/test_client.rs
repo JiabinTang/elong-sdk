@@ -1,4 +1,4 @@
-use elong_offline_sdk::elong::{endpoints::ApiEndpoint, service::ElongService};
+use elong_sdk::elong::{endpoints::ApiEndpoint, service::ElongService};
 
 #[test]
 fn test_new() {

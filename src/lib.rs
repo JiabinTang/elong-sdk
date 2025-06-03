@@ -1,6 +1,6 @@
-//! # 艺龙离线数据 SDK
+//! # 艺龙 SDK
 //!
-//! 这是一个用于与艺龙离线数据交互的 SDK，提供了多种异步接口以获取静态和动态数据。
+//! 这是一个用于与艺龙交互的 SDK，提供了多种异步接口以获取静态和动态数据。
 //!
 //! ## 模块概览
 //!
@@ -29,7 +29,10 @@ use request::{
 
 use types::*;
 
-use crate::request::order_pay_confirm::OrderPayConfirmRequest;
+use crate::request::{
+    incr_order::IncrOrderRequest, order_pay::OrderPayRequest,
+    order_pay_confirm::OrderPayConfirmRequest,
+};
 
 pub mod elong;
 mod network;
@@ -103,8 +106,11 @@ pub trait Elong {
     async fn order_create(&self, req: OrderCreateRequest) -> REOrderCreateResp;
 
     /// 订单支付
-    async fn order_pay(&self, req: request::order_pay::OrderPayRequest) -> REOrderPayResp;
+    async fn order_pay(&self, req: OrderPayRequest) -> REOrderPayResp;
 
     /// 订单支付确认
     async fn order_pay_confirm(&self, req: OrderPayConfirmRequest) -> REOrderPayConfirmResp;
+
+    /// 订单增量
+    async fn order_incr(&self, req: IncrOrderRequest) -> REIncrOrderResp;
 }
