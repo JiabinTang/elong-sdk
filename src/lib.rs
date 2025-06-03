@@ -29,6 +29,8 @@ use request::{
 
 use types::*;
 
+use crate::request::order_pay_confirm::OrderPayConfirmRequest;
+
 pub mod elong;
 mod network;
 pub mod request;
@@ -102,4 +104,7 @@ pub trait Elong {
 
     /// 订单支付
     async fn order_pay(&self, req: request::order_pay::OrderPayRequest) -> REOrderPayResp;
+
+    /// 订单支付确认
+    async fn order_pay_confirm(&self, req: OrderPayConfirmRequest) -> REOrderPayConfirmResp;
 }

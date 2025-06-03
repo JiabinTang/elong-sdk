@@ -692,7 +692,6 @@ pub struct Location {
 impl BaseResponse for ElongResponse<StaticInfoResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<StaticHotelResponse> json: {}", json);
-        print!("ElongResponse<StaticHotelResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }

@@ -12,6 +12,7 @@ use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::incr_state::IncrStateRequest;
 use elong_offline_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_offline_sdk::request::order_pay::OrderPayRequest;
+use elong_offline_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
 use elong_offline_sdk::request::static_brand::StaticBrandRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_grade::StaticGradeRequest;
@@ -498,6 +499,24 @@ async fn test_order_pay() {
     };
 
     let result = service.order_pay(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单支付确认
+#[tokio::test]
+async fn test_order_pay_confirm() {
+    let service = create_test_service();
+
+    let request = OrderPayConfirmRequest {
+        order_id: 1234567890,
+        sms_code: "123456".to_string(),
+        amount: 284.59,
+    };
+
+    let result = service.order_pay_confirm(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

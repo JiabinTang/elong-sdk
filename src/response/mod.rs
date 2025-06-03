@@ -11,6 +11,7 @@ pub mod incr_rate;
 pub mod incr_state;
 pub mod order_create;
 pub mod order_pay;
+pub mod order_pay_confirm;
 pub mod static_brand;
 pub mod static_city;
 pub mod static_grade;
