@@ -4,6 +4,7 @@ use elong_offline_sdk::request::data_inventory::InventoryRequest;
 use elong_offline_sdk::request::data_rate::DataRateRequest;
 use elong_offline_sdk::request::data_rp::DataRpRequest;
 use elong_offline_sdk::request::data_validate::DataValidateRequest;
+use elong_offline_sdk::request::dictionary::DictionaryRequest;
 use elong_offline_sdk::request::incr_id::IncrIdRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
@@ -75,7 +76,7 @@ async fn test_get_static_info() {
 
 /// 点评评分
 #[tokio::test]
-async fn test_get_static_grade(){
+async fn test_get_static_grade() {
     let service = create_test_service();
 
     let request = StaticGradeRequest {
@@ -119,6 +120,24 @@ async fn test_get_static_group() {
     };
 
     let result = service.get_static_group(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 酒店字典
+#[tokio::test]
+async fn test_get_hotel_dictionary() {
+    let service = create_test_service();
+
+    let request = DictionaryRequest {
+        r#type: 3,
+        page: 1,
+        limit: 100,
+    };
+
+    let result = service.get_hotel_dictionary(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
@@ -358,7 +377,7 @@ async fn test_data_booking() {
 
     let request = DataBookingRequest {
         arrival_date: "2025-04-23".to_string(),
-        departure_date:"2025-04-24".to_string(),
+        departure_date: "2025-04-24".to_string(),
         hotel_id: "26333143".to_string(),
         hotel_code: "26548651".to_string(),
         room_type_id: "0003".to_string(),

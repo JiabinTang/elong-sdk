@@ -173,10 +173,10 @@ pub struct AdditionalTax {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct AdditionalTaxItem {
-       /// Description 另付税和服务费明细描述 String Y
-       pub description: Option<String>,
-       /// Amount 另付税和服务费明细金额 Decimal Y
-       pub amount: Option<Decimal>,
+    /// Description 另付税和服务费明细描述 String Y
+    pub description: Option<String>,
+    /// Amount 另付税和服务费明细金额 Decimal Y
+    pub amount: Option<Decimal>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

@@ -14,9 +14,9 @@ pub struct IncrInvResponse {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "PascalCase")]
 pub struct Inventory {
-    /// LastId 增量ID Long N 
+    /// LastId 增量ID Long N
     pub last_id: i64,
-    /// Time 变化时间 Datetime N 
+    /// Time 变化时间 Datetime N
     pub time: String,
     /// HotelID 酒店ID String(8) N 这几个属性是业务主键。 HotelCode关联搜索接口的RatePlan.HotelCode Date表示的是某天的库存。
     #[serde(rename = "HotelID")]

@@ -3,8 +3,10 @@ use serde::{Deserialize, Serialize};
 
 use crate::elong::error::ElongError;
 
-use super::{api_response::{BaseResponse, ElongResponse}, data_rp::RatePlan};
-
+use super::{
+    api_response::{BaseResponse, ElongResponse},
+    data_rp::RatePlan,
+};
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "PascalCase")]
@@ -58,7 +60,6 @@ pub struct BookingRule {
     pub start_hour: Option<String>,
     /// EndHour 每天结束时间 Time Y
     pub end_hour: Option<String>,
-
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
@@ -93,7 +94,6 @@ pub struct Inventory {
     pub ic_begin_time: Option<String>,
     /// IC_EndTime 预订当天即时确认可用结束时间 Time Y
     pub ic_end_time: Option<String>,
-
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]

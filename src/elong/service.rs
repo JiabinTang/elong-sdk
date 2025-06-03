@@ -6,19 +6,19 @@ use crate::{
     request::{
         data_booking::DataBookingRequest, data_inventory::InventoryRequest,
         data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest,
-        incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest,
-        incr_state::IncrStateRequest, static_brand::StaticBrandRequest, static_city::*,
-        static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
+        dictionary::DictionaryRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest,
+        incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_brand::StaticBrandRequest,
+        static_city::*, static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
         static_info::StaticInfoRequest, static_list::StaticListRequest,
     },
     response::{
         api_response::ElongResponse, data_booking::DataBookingResponse,
         data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
-        data_validate::DataValidateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse,
-        incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
-        static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse,
-        static_group::StaticGroupResponse, static_info::StaticInfoResponse,
-        static_list::StaticListResponse,
+        data_validate::DataValidateResponse, dictionary::DictionaryResponse,
+        incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_rate::IncrRateResponse,
+        incr_state::IncrStateResponse, static_brand::StaticBrandResponse, static_city::*,
+        static_grade::StaticGradeResponse, static_group::StaticGroupResponse,
+        static_info::StaticInfoResponse, static_list::StaticListResponse,
     },
     types::*,
     Elong,
@@ -118,6 +118,15 @@ impl Elong for ElongService {
         let res: ElongResponse<StaticGroupResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::StaticGroup, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 酒店字典
+    async fn get_hotel_dictionary(&self, request: DictionaryRequest) -> REDictionaryResp {
+        let res: ElongResponse<DictionaryResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::Dictionary, request)
             .await?;
         Ok(res)
     }

@@ -1,19 +1,14 @@
 use crate::elong::error::ElongError;
-use crate::response::data_booking::DataBookingResponse;
-use crate::response::data_rp::DataRpResponse;
-use crate::response::data_validate::DataValidateResponse;
-use crate::response::incr_id::IncrIdResponse;
-use crate::response::incr_state::IncrStateResponse;
-use crate::response::static_brand::StaticBrandResponse;
-use crate::response::static_grade::StaticGradeResponse;
-use crate::response::static_group::StaticGroupResponse;
 use crate::response::{
-    api_response::ElongResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse,
-    incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, static_city::StaticCityResponse,
+    api_response::ElongResponse, data_booking::DataBookingResponse,
+    data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
+    data_validate::DataValidateResponse, dictionary::DictionaryResponse, incr_id::IncrIdResponse,
+    incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
+    static_brand::StaticBrandResponse, static_city::StaticCityResponse,
+    static_grade::StaticGradeResponse, static_group::StaticGroupResponse,
     static_info::StaticInfoResponse, static_list::StaticListResponse,
 };
 
-// 响应体别名
 pub type RECityResp = Result<ElongResponse<StaticCityResponse>, ElongError>;
 pub type REListResp = Result<ElongResponse<StaticListResponse>, ElongError>;
 pub type REInfoResp = Result<ElongResponse<StaticInfoResponse>, ElongError>;
@@ -29,3 +24,4 @@ pub type RERateResp = Result<ElongResponse<DataRateResponse>, ElongError>;
 pub type REIncrRateResp = Result<ElongResponse<IncrRateResponse>, ElongError>;
 pub type REDataValidateResp = Result<ElongResponse<DataValidateResponse>, ElongError>;
 pub type REDataBookingResp = Result<ElongResponse<DataBookingResponse>, ElongError>;
+pub type REDictionaryResp = Result<ElongResponse<DictionaryResponse>, ElongError>;

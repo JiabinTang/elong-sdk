@@ -4,6 +4,7 @@ pub mod data_inventory;
 pub mod data_rate;
 pub mod data_rp;
 pub mod data_validate;
+pub mod dictionary;
 pub mod incr_id;
 pub mod incr_inv;
 pub mod incr_rate;

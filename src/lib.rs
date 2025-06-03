@@ -18,16 +18,23 @@
 
 use async_trait::async_trait;
 use request::{
-    data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, static_brand::StaticBrandRequest, static_city::StaticCityRequest, static_grade::StaticGradeRequest, static_group::StaticGroupRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+    data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest,
+    data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest,
+    incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
+    static_brand::StaticBrandRequest, static_city::StaticCityRequest,
+    static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
+    static_info::StaticInfoRequest, static_list::StaticListRequest,
 };
 
 use types::*;
 
-mod network;
-mod types;
+use crate::request::dictionary::DictionaryRequest;
+
 pub mod elong;
+mod network;
 pub mod request;
 pub mod response;
+mod types;
 
 #[async_trait]
 pub trait Elong {
@@ -41,28 +48,22 @@ pub trait Elong {
     async fn get_static_info(&self, req: StaticInfoRequest) -> REInfoResp;
 
     /// 点评评分
-    async fn get_static_grade(&self,req: StaticGradeRequest) -> REGradeResp;
+    async fn get_static_grade(&self, req: StaticGradeRequest) -> REGradeResp;
 
     /// 酒店品牌
     async fn get_static_brand(&self, req: StaticBrandRequest) -> REBrandResp;
-    
+
     /// 酒店集团
     async fn get_static_group(&self, req: StaticGroupRequest) -> REGroupResp;
+
+    /// 酒店字典
+    async fn get_hotel_dictionary(&self, req: DictionaryRequest) -> REDictionaryResp;
 
     /// 产品详情
     async fn get_data_rp(&self, req: DataRpRequest) -> REDataRpResp;
 
-    /// 增量编号
-    async fn get_incr_id(&self, req: IncrIdRequest) -> REIncrIdResp;
-
-    /// 增量编号分片
-    async fn get_incr_sharding_id(&self, req: IncrIdRequest) -> REIncrIdResp;
-
     /// 状态增量
     async fn get_incr_state(&self, req: IncrStateRequest) -> REIncrStateResp;
-
-    /// 状态增量分片
-    async fn get_incr_sharding_state(&self, req: IncrStateRequest) -> REIncrStateResp;
 
     /// 库存全量
     async fn get_inventory(&self, req: InventoryRequest) -> REInvResp;
@@ -81,6 +82,15 @@ pub trait Elong {
 
     /// 价格增量分片
     async fn get_incr_sharding_rate(&self, req: IncrRateRequest) -> REIncrRateResp;
+
+    /// 增量编号
+    async fn get_incr_id(&self, req: IncrIdRequest) -> REIncrIdResp;
+
+    /// 增量编号分片
+    async fn get_incr_sharding_id(&self, req: IncrIdRequest) -> REIncrIdResp;
+
+    /// 状态增量分片
+    async fn get_incr_sharding_state(&self, req: IncrStateRequest) -> REIncrStateResp;
 
     /// 数据验证
     async fn data_validate(&self, req: DataValidateRequest) -> REDataValidateResp;
