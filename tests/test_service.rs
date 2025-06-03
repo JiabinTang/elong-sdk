@@ -11,6 +11,7 @@ use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::incr_state::IncrStateRequest;
 use elong_offline_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
+use elong_offline_sdk::request::order_pay::OrderPayRequest;
 use elong_offline_sdk::request::static_brand::StaticBrandRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_grade::StaticGradeRequest;
@@ -21,7 +22,7 @@ use elong_offline_sdk::Elong;
 
 fn create_test_service() -> ElongService {
     let mut service = ElongService::new();
-    service.url = ApiEndpoint::Test.url();
+    service.url = ApiEndpoint::Prod.url();
     service
 }
 
@@ -67,7 +68,7 @@ async fn test_get_static_info() {
     let service = create_test_service();
 
     let request = StaticInfoRequest {
-        hotel_id: "93993637".to_string(),
+        hotel_id: "91427260".to_string(),
         options: Some("1,2,3,4,5,6".to_string()),
     };
 
@@ -153,7 +154,7 @@ async fn test_get_hotel_dictionary() {
 async fn test_get_data_rp() {
     let service = create_test_service();
     let request = DataRpRequest {
-        hotel_ids: "93993637".to_string(),
+        hotel_ids: "91427260".to_string(),
         ..Default::default()
     };
     let result = service.get_data_rp(request).await;
@@ -477,6 +478,26 @@ async fn test_order_create() {
     };
 
     let result = service.order_create(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单支付
+#[tokio::test]
+async fn test_order_pay() {
+    let service = create_test_service();
+
+    let request = OrderPayRequest {
+        order_id: 1234567890,
+        is_guarantee_or_charged: true,
+        credit_card: None,
+        dove_corp_card: None,
+        amount: 284.59,
+    };
+
+    let result = service.order_pay(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

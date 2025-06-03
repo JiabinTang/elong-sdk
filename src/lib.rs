@@ -99,4 +99,7 @@ pub trait Elong {
 
     ///  创建订单
     async fn order_create(&self, req: OrderCreateRequest) -> REOrderCreateResp;
+
+    /// 订单支付
+    async fn order_pay(&self, req: request::order_pay::OrderPayRequest) -> REOrderPayResp;
 }

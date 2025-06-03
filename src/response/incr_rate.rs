@@ -61,7 +61,6 @@ pub struct Rate {
 impl BaseResponse for ElongResponse<IncrRateResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<IncrRateResponse> json: {}", json);
-        print!("ElongResponse<IncrRateResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }

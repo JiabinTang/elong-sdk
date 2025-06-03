@@ -202,7 +202,7 @@ pub struct Facility {
 #[serde(rename_all = "PascalCase")]
 pub struct Theme {
     ///ThemeId  主题ID String Y
-    pub theme_id: String,
+    pub theme_id: i32,
     ///ThemeName  主题名称 String Y
     pub theme_name: Option<String>,
     ///ThemeNameEn  主题英文名称 String Y
@@ -692,6 +692,7 @@ pub struct Location {
 impl BaseResponse for ElongResponse<StaticInfoResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<StaticHotelResponse> json: {}", json);
+        print!("ElongResponse<StaticHotelResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }
