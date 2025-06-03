@@ -11,6 +11,7 @@ use elong_sdk::request::incr_inv::IncrInvRequest;
 use elong_sdk::request::incr_order::IncrOrderRequest;
 use elong_sdk::request::incr_rate::IncrRateRequest;
 use elong_sdk::request::incr_state::IncrStateRequest;
+use elong_sdk::request::order_cancel::OrderCancelRequest;
 use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_sdk::request::order_pay::OrderPayRequest;
 use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
@@ -535,6 +536,26 @@ async fn test_order_incr() {
     };
 
     let result = service.order_incr(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 取消订单
+#[tokio::test]
+async fn test_order_cancel() {
+    let service = create_test_service();
+
+    let request = OrderCancelRequest {
+        order_id: 1234567890,
+        cancel_code: "行程变更".to_string(),
+        reason: Some("对酒店相关条件不满意".to_string()),
+        penalty_amount: Some(0.0),
+    };
+
+    let result = service.order_cancel(request).await;
+
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
