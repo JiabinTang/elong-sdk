@@ -13,7 +13,7 @@ impl ApiEndpoint {
             ApiEndpoint::Prod => env::var("ELONG_API_URL")
                 .unwrap_or_else(|_| "https://api.elong.com/rest".to_string()),
             ApiEndpoint::Test => env::var("ELONG_TEST_API_URL")
-                .unwrap_or_else(|_| "https://api.test.lohoo.com/rest".to_string()),
+                .unwrap_or_else(|_| "https://api-test.elong.com/rest".to_string()),
         }
     }
 }

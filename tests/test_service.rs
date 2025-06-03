@@ -1,3 +1,4 @@
+use elong_offline_sdk::elong::endpoints::ApiEndpoint;
 use elong_offline_sdk::elong::service::ElongService;
 use elong_offline_sdk::request::data_booking::DataBookingRequest;
 use elong_offline_sdk::request::data_inventory::InventoryRequest;
@@ -9,6 +10,7 @@ use elong_offline_sdk::request::incr_id::IncrIdRequest;
 use elong_offline_sdk::request::incr_inv::IncrInvRequest;
 use elong_offline_sdk::request::incr_rate::IncrRateRequest;
 use elong_offline_sdk::request::incr_state::IncrStateRequest;
+use elong_offline_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_offline_sdk::request::static_brand::StaticBrandRequest;
 use elong_offline_sdk::request::static_city::StaticCityRequest;
 use elong_offline_sdk::request::static_grade::StaticGradeRequest;
@@ -18,7 +20,9 @@ use elong_offline_sdk::request::static_list::StaticListRequest;
 use elong_offline_sdk::Elong;
 
 fn create_test_service() -> ElongService {
-    ElongService::new()
+    let mut service = ElongService::new();
+    service.url = ApiEndpoint::Test.url();
+    service
 }
 
 /// 城市列表
@@ -258,11 +262,11 @@ async fn test_get_data_rate() {
     let service = create_test_service();
 
     let request = DataRateRequest {
-        hotel_ids: "26315956".to_string(),
+        hotel_ids: "28005348".to_string(),
         hotel_codes: None,
         payment_type: "All".to_string(),
-        start_date: "2025-04-23".to_string(),
-        end_date: "2025-04-23".to_string(),
+        start_date: "2025-06-03".to_string(),
+        end_date: "2025-06-04".to_string(),
         invoice_mode: None,
     };
 
@@ -387,6 +391,92 @@ async fn test_data_booking() {
     };
 
     let result = service.data_booking(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单创建
+#[tokio::test]
+async fn test_order_create() {
+    let service = create_test_service();
+
+    // 自定义订单号
+    let custom_order_id = "1234567890".to_string();
+
+    let order_rooms = vec![OrderRoom {
+        customers: vec![Customer {
+            name: "林立体".to_string(),
+            gender: "Unknown".to_string(),
+            nationality: "中国".to_string(),
+            nat: None,
+            id_card_no: None,
+            id_card_type: None,
+            first_name: None,
+            last_name: None,
+        }],
+    }];
+    let contact = Contact {
+        name: "林立体".to_string(),
+        email: None,
+        mobile_area_code: "86".to_string(),
+        mobile: "18301221126".to_string(),
+        phone: None,
+        fax: None,
+        gender: "Unknown".to_string(),
+        first_name: None,
+        last_name: None,
+    };
+
+    let request = OrderCreateRequest {
+        affiliate_confirmation_id: custom_order_id,
+        hotel_id: "28005348".to_string(),
+        room_id: None,
+        room_type_id: "0003".to_string(),
+        rate_plan_id: 416853117,
+        arrival_date: "2025-06-03".to_string(),
+        departure_date: "2025-06-04".to_string(),
+        hour_room_start_time: None,
+        hour_room_end_time: None,
+        customer_type: None,
+        payment_type: "Prepay".to_string(),
+        number_of_rooms: 1,
+        number_of_customers: 1,
+        earliest_arrival_time: "2025-06-03 14:00:00".to_string(),
+        latest_arrival_time: "2025-06-04 18:00:00".to_string(),
+        currency_code: "RMB".to_string(),
+        total_price: 284.59,
+        customer_ip_address: "127.0.0.1".to_string(),
+        is_guarantee_or_charged: Some(true),
+        confirmation_type: "SMS_cn".to_string(),
+        note_to_hotel: None,
+        note_to_elong: None,
+        is_need_invoice: None,
+        order_rooms,
+        invoice: None,
+        contact,
+        credit_card: None,
+        dove_corp_card: None,
+        extend_info: None,
+        is_create_order_only: None,
+        customer_price: Some(308.00),
+        order_validation: None,
+        coupon: None,
+        little_majia_id: None,
+        goods_uniq_id: None,
+        specific_remark: None,
+        child_ages: None,
+        number_of_adults: None,
+        hotel_code: None,
+        supplier_id: None,
+        sub_supplier_id: None,
+        shopper_product_id: None,
+        encrypt_option: None,
+        day_price_list: None,
+    };
+
+    let result = service.order_create(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

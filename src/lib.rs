@@ -19,16 +19,15 @@
 use async_trait::async_trait;
 use request::{
     data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest,
-    data_rp::DataRpRequest, data_validate::DataValidateRequest, incr_id::IncrIdRequest,
-    incr_inv::IncrInvRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
+    data_rp::DataRpRequest, data_validate::DataValidateRequest, dictionary::DictionaryRequest,
+    incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_rate::IncrRateRequest,
+    incr_state::IncrStateRequest, order_create::OrderCreateRequest,
     static_brand::StaticBrandRequest, static_city::StaticCityRequest,
     static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
     static_info::StaticInfoRequest, static_list::StaticListRequest,
 };
 
 use types::*;
-
-use crate::request::dictionary::DictionaryRequest;
 
 pub mod elong;
 mod network;
@@ -97,4 +96,7 @@ pub trait Elong {
 
     /// 预订数据
     async fn data_booking(&self, req: DataBookingRequest) -> REDataBookingResp;
+
+    ///  创建订单
+    async fn order_create(&self, req: OrderCreateRequest) -> REOrderCreateResp;
 }

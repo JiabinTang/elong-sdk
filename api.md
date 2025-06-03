@@ -13,7 +13,7 @@
 | ✅ hotel.static.grade                     | 酒店点评评分、点评标签     | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotelstaticgrade)           |
 | ✅ hotel.static.brand                     | 品牌列表-静态信息 (json)   | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotelbrand)                 |
 | ✅ hotel.static.group                     | 酒店集团信息-静态信息      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotelstaticgroup)           |
-| ✅ hotel.dictionary                         | 酒店字典数据-静态信息      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hoteldictionary)            |
+| ✅ hotel.dictionary                       | 酒店字典数据-静态信息      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hoteldictionary)            |
 | ✅ hotel.data.rp (不建议使用)             | 国内酒店-产品详情          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_data_rp)              |
 | ✅ hotel.incr.state (不建议使用)          | 国内酒店-产品状态增量      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_incr_state)           |
 | ✅ hotel.data.inventory (不建议使用)      | 国内酒店-房态库存          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_data_inventory)       |
@@ -27,7 +27,7 @@
 | ✅ hotel.incr.sharding.state (不建议使用) | 国内酒店-分片状态增量      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_incr_sharding_state)  |
 | ✅ hotel.data.validate                    | 国内酒店-数据验证          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_data_validate)        |
 | ✅ hotel.data.booking                     | 国内酒店-预定数据          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_data_booking)         |
-| common.creditcard.validate               | 国内酒店-信用卡验证        | [查看文档](https://open.elong.com/doc/info/cn-api-meta-common_creditcard_validate) |
+| common.creditcard.validate (已废弃)      | 国内酒店-信用卡验证        | [查看文档](https://open.elong.com/doc/info/cn-api-meta-common_creditcard_validate) |
 | hotel.order.create                       | 国内酒店-创建订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_create)         |
 | hotel.order.pay                          | 国内酒店-支付订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_pay)            |
 | hotel.order.pay.confirm                  | 国内酒店-支付订单确认      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_pay_confirm)    |

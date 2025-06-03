@@ -272,7 +272,6 @@ pub struct GuaranteeResult {
 impl BaseResponse for ElongResponse<DataBookingResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<DataBookingResponse> json: {}", json);
-        print!("ElongResponse<DataBookingResponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }
