@@ -30,9 +30,10 @@ use request::{
 use types::*;
 
 use crate::request::{
-    incr_order::IncrOrderRequest, order_addinvoice::OrderAddinvoiceRequest,
-    order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest,
-    order_feedback::OrderFeedbackRequest, order_list::OrderListRequest, order_pay::OrderPayRequest,
+    exchangerate::ExchangerateRequest, incr_order::IncrOrderRequest,
+    order_addinvoice::OrderAddinvoiceRequest, order_cancel::OrderCancelRequest,
+    order_detail::OrderDetailRequest, order_feedback::OrderFeedbackRequest,
+    order_list::OrderListRequest, order_pay::OrderPayRequest,
     order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
     order_related::OrderRelatedRequest,
 };
@@ -137,4 +138,7 @@ pub trait Elong {
 
     /// 订单列表
     async fn order_list(&self, req: OrderListRequest) -> REOrderListResp;
+
+    /// 汇率
+    async fn exchangerate(&self, req: ExchangerateRequest) -> REExchangeRateResp;
 }

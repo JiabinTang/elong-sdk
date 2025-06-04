@@ -6,6 +6,7 @@ use elong_sdk::request::data_rate::DataRateRequest;
 use elong_sdk::request::data_rp::DataRpRequest;
 use elong_sdk::request::data_validate::DataValidateRequest;
 use elong_sdk::request::dictionary::DictionaryRequest;
+use elong_sdk::request::exchangerate::ExchangerateRequest;
 use elong_sdk::request::incr_id::IncrIdRequest;
 use elong_sdk::request::incr_inv::IncrInvRequest;
 use elong_sdk::request::incr_order::IncrOrderRequest;
@@ -710,6 +711,21 @@ async fn test_order_list() {
     };
 
     let result = service.order_list(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 汇率
+#[tokio::test]
+async fn test_get_exchange_rate() {
+    let service = create_test_service();
+
+    let request = ExchangerateRequest {
+        currency_id: "USD".to_string(),
+    };
+    let result = service.exchangerate(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

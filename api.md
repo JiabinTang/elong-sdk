@@ -39,5 +39,5 @@
 | ✅ hotel.order.related                    | 国内酒店-关联订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_related)        |
 | ✅ hotel.order.feedback                   | 国内酒店-入住反馈          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_feedback)       |
 | ✅ hotel.order.addinvoice                 | 国内酒店-补开发票          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_addinvoice)     |
-| ✅ hotel.order.list                         | 国内酒店-订单列表          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_list)           |
-| common.exchangerate                      | 国内酒店-汇率              | [查看文档](https://open.elong.com/doc/info/cn-api-meta-common_exchangerate)        |
+| ✅ hotel.order.list                       | 国内酒店-订单列表          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_list)           |
+| ✅ common.exchangerate                    | 国内酒店-汇率              | [查看文档](https://open.elong.com/doc/info/cn-api-meta-common_exchangerate)        |
