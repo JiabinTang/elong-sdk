@@ -165,7 +165,7 @@ async fn test_get_hotel_dictionary() {
 async fn test_get_data_rp() {
     let service = create_test_service();
     let request = DataRpRequest {
-        hotel_ids: "91427260".to_string(),
+        hotel_ids: "03001008".to_string(),
         ..Default::default()
     };
     let result = service.get_data_rp(request).await;

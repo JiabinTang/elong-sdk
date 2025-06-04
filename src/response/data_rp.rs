@@ -69,7 +69,7 @@ pub struct BookingRule {
     /// RoomTypeIds 关联的销售房型Id string(500) Y all 表示所有房型
     pub room_type_ids: Option<String>,
     /// Description 描述 String(255) N
-    pub description: String,
+    pub description: Option<String>,
     /// DateType 日期类型 Enum Y BookDay –预订日期（订单的创建日期）
     pub date_type: Option<String>,
     /// StartDate 开始日期 Date Y
@@ -208,7 +208,7 @@ pub struct RatePlan {
 #[serde(rename_all = "PascalCase")]
 pub struct GuaranteeRule {
     /// Description 描述 String(255) N
-    pub description: String,
+    pub description: Option<String>,
     /// DateType 日期类型 Enum N
     /// CheckInDay-入住日期 StayDay-在店日期
     pub date_type: String,
@@ -271,7 +271,7 @@ pub struct GuaranteeRule {
 #[serde(rename_all = "PascalCase")]
 pub struct PrepayRule {
     /// Description 描述 String(255) N
-    pub description: String,
+    pub description: Option<String>,
     /// DateType 日期类型 Enum N
     /// CheckInDay：入住日期（该字段后期下线，可以不用判断）
     pub date_type: String,
@@ -330,7 +330,7 @@ pub struct ValueAdd {
     pub type_code: String,
     /// Description 描述 String(255) N
     /// 附加服务描述，代理不想解析的话，可以直接显示该描述。
-    pub description: String,
+    pub description: Option<String>,
     /// IsInclude 是否包含在房费中 Boolean N
     /// false-不包含 true-包含，例如业务代码为早餐时，false即为不含早，true为含早。
     pub is_include: bool,
@@ -407,7 +407,7 @@ pub struct Meal {
     pub optional_meals: Option<String>,
     /// Description 描述 String(500) N
     /// 餐食描述
-    pub description: String,
+    pub description: Option<String>,
     /// DescribeOfBreakfast 早餐描述 String Y
     pub describe_of_breakfast: Option<String>,
     /// DescribeOfLunch 午餐描述 String Y
@@ -428,13 +428,13 @@ pub struct Meal {
 pub struct Gift {
     /// GiftId 送礼编号 Int N
     /// 关联RatePlan.GiftId
-    pub gift_id: i32,
+    pub gift_id: Option<i32>,
     /// GiftDescription 礼包副标题 String Y
     /// 关于礼品副标题的描述
     pub gift_description: Option<String>,
     /// Description 描述 String N
     /// 关于礼品的描述
-    pub description: String,
+    pub description: Option<String>,
     /// EffectiveDates 礼包有效日期 HotelGiftDate[] N
     /// 参考HotelGiftDate节点
     pub effective_dates: Vec<HotelGiftDate>,
@@ -458,7 +458,7 @@ pub struct Gift {
     /// 21.折扣/折扣券-其他 22.交通-含接站 23.交通-含接机 24.交通-含送站
     /// 25.交通-含送机 26.交通-含景区直通车 27.交通-其他 28.其他-其他
     /// 注意：1.52版本及以后该字段废弃，请使用GiftInfos字段，1.52之前的版本仍使用该字段。
-    pub gift_types: String,
+    pub gift_types: Option<String>,
     /// GiftInfos 新的送礼类型 GiftInfo[] Y
     /// 参考GiftInfo字段
     pub gift_infos: Option<Vec<GiftInfo>>,
