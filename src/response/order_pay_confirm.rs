@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{elong::error::ElongError, response::api_response::{BaseResponse, ElongResponse}};
+use crate::{
+    elong::error::ElongError,
+    response::api_response::{BaseResponse, ElongResponse},
+};
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 #[serde(rename_all = "PascalCase")]

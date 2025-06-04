@@ -82,7 +82,7 @@ pub enum ApiMethod {
     /// hotel.order.feedback        国内酒店-入住反馈
     OrderFeedback,
     /// hotel.order.addinvoice      国内酒店-补开发票
-    OrderAddInvoice,
+    OrderAddinvoice,
     /// hotel.order.list            国内酒店-订单列表
     OrderList,
     /// common.exchangerate         国内酒店-汇率
@@ -123,7 +123,7 @@ impl ApiMethod {
             ApiMethod::OrderPromote => "hotel.order.promote",
             ApiMethod::OrderRelated => "hotel.order.related",
             ApiMethod::OrderFeedback => "hotel.order.feedback",
-            ApiMethod::OrderAddInvoice => "hotel.order.addinvoice",
+            ApiMethod::OrderAddinvoice => "hotel.order.addinvoice",
             ApiMethod::OrderList => "hotel.order.list",
             ApiMethod::ExchangeRate => "common.exchangerate",
         }

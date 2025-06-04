@@ -10,6 +10,7 @@ pub mod incr_inv;
 pub mod incr_order;
 pub mod incr_rate;
 pub mod incr_state;
+pub mod order_addinvoice;
 pub mod order_cancel;
 pub mod order_create;
 pub mod order_detail;

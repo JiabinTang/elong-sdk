@@ -11,6 +11,9 @@ use elong_sdk::request::incr_inv::IncrInvRequest;
 use elong_sdk::request::incr_order::IncrOrderRequest;
 use elong_sdk::request::incr_rate::IncrRateRequest;
 use elong_sdk::request::incr_state::IncrStateRequest;
+use elong_sdk::request::order_addinvoice::{
+    DedicatedInvoice, DeliveryAddress, OrderAddinvoiceRequest,
+};
 use elong_sdk::request::order_cancel::OrderCancelRequest;
 use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_sdk::request::order_detail::OrderDetailRequest;
@@ -630,6 +633,52 @@ async fn test_order_feedback() {
     };
 
     let result = service.order_feedback(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 补开发票
+#[tokio::test]
+async fn test_order_addinvoice() {
+    let service = create_test_service();
+
+    let delivery_address = DeliveryAddress {
+        province: Some("北京市".to_string()),
+        city: Some("北京市".to_string()),
+        district: Some("海淀区".to_string()),
+        street: Some("某街道".to_string()),
+        recipient_name: Some("林立体".to_string()),
+        post_email: Some("123@123.COM".to_string()),
+        phone: "12345678901".to_string(),
+        email: None,
+    };
+
+    let dedicated_invoice = DedicatedInvoice {
+        tax_payer_num: "123456789012345678".to_string(),
+        tax_register_bank: "某银行".to_string(),
+        register_bank_num: "123456789012345678".to_string(),
+        shotel_address: "某地址".to_string(),
+        register_phone_num: "12345678901".to_string(),
+    };
+
+    let request = OrderAddinvoiceRequest {
+        delivery_info: delivery_address,
+        order_id: 1234567890,
+        title: Some("林立体".to_string()),
+        user_type: 1,
+        item_name: "代订住宿费".to_string(),
+        amount: 284.59,
+        invoice_type: 1,
+        invoice_level: 1,
+        itin: Some("123456789012345678".to_string()),
+        need_relation_order: 1,
+        dedicated_invoice: Some(dedicated_invoice),
+        encrypt_option: Some(0),
+    };
+
+    let result = service.order_addinvoice(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
