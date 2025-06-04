@@ -4,6 +4,7 @@ use crate::response::incr_order::IncrOrderResponse;
 use crate::response::order_cancel::OrderCancelResponse;
 use crate::response::order_detail::OrderDetailReponse;
 use crate::response::order_promote::OrderPromoteResponse;
+use crate::response::order_related::OrderRelatedResponse;
 use crate::response::{
     api_response::ElongResponse, data_booking::DataBookingResponse,
     data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
@@ -39,3 +40,4 @@ pub type REIncrOrderResp = Result<ElongResponse<IncrOrderResponse>, ElongError>;
 pub type REOrderDetailResp = Result<ElongResponse<OrderDetailReponse>, ElongError>;
 pub type REOrderCancelResp = Result<ElongResponse<OrderCancelResponse>, ElongError>;
 pub type REOrderPromoteResp = Result<ElongResponse<OrderPromoteResponse>, ElongError>;
+pub type REOrderRelatedResp = Result<ElongResponse<OrderRelatedResponse>, ElongError>;

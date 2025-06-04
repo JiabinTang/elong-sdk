@@ -16,6 +16,7 @@ use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, Or
 use elong_sdk::request::order_detail::OrderDetailRequest;
 use elong_sdk::request::order_pay::OrderPayRequest;
 use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
+use elong_sdk::request::order_related::OrderRelatedRequest;
 use elong_sdk::request::static_brand::StaticBrandRequest;
 use elong_sdk::request::static_city::StaticCityRequest;
 use elong_sdk::request::static_grade::StaticGradeRequest;
@@ -591,6 +592,22 @@ async fn test_order_promote() {
     };
 
     let result = service.order_promote(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 关联订单
+#[tokio::test]
+async fn test_order_related() {
+    let service = create_test_service();
+    let request = OrderRelatedRequest {
+        order_ids: "1234567890".to_string(),
+        relation_type: "0987654321".to_string(),
+    };
+
+    let result = service.order_related(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

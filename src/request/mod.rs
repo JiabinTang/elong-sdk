@@ -16,6 +16,7 @@ pub mod order_detail;
 pub mod order_pay;
 pub mod order_pay_confirm;
 pub mod order_promote;
+pub mod order_related;
 pub mod static_brand;
 pub mod static_city;
 pub mod static_grade;
