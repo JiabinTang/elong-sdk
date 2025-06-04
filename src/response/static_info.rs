@@ -272,7 +272,7 @@ pub struct Notice {
 #[serde(rename_all = "PascalCase")]
 pub struct DepositPolicy {
     ///DepositSwitch 是否收取押金 Integer N 1:是, 0:否, null:未知
-    pub deposit_switch: i32,
+    pub deposit_switch: Option<i32>,
     ///Frequency 收取频次 Integer Y 1:固定金额，2:每间，3:每晚
     pub frequency: Option<i32>,
     ///Amount 收取金额 f64 Y
