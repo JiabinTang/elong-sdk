@@ -32,9 +32,9 @@
 | ✅ hotel.order.pay                        | 国内酒店-支付订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_pay)            |
 | ✅ hotel.order.pay.confirm                | 国内酒店-支付订单确认      | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_pay_confirm)    |
 | ✅ hotel.incr.order                       | 国内酒店-订单增量          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_incr_order)           |
-| hotel.order.detail                       | 国内酒店-订单详情          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_detail)         |
+| ✅ hotel.order.detail                       | 国内酒店-订单详情          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_detail)         |
 | ❌ hotel.order.update(已废弃)             | 国内酒店-修改订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_update)         |
-| hotel.order.cancel                       | 国内酒店-取消订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_cancel)         |
+| ✅ hotel.order.cancel                       | 国内酒店-取消订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_cancel)         |
 | hotel.order.promote                      | 国内酒店-催确认            | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_promote)        |
 | hotel.order.related                      | 国内酒店-关联订单          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_related)        |
 | hotel.order.feedback                     | 国内酒店-入住反馈          | [查看文档](https://open.elong.com/doc/info/cn-api-meta-hotel_order_feedback)       |

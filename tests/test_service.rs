@@ -13,6 +13,7 @@ use elong_sdk::request::incr_rate::IncrRateRequest;
 use elong_sdk::request::incr_state::IncrStateRequest;
 use elong_sdk::request::order_cancel::OrderCancelRequest;
 use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
+use elong_sdk::request::order_detail::OrderDetailRequest;
 use elong_sdk::request::order_pay::OrderPayRequest;
 use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
 use elong_sdk::request::static_brand::StaticBrandRequest;
@@ -536,6 +537,24 @@ async fn test_order_incr() {
     };
 
     let result = service.order_incr(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单详情
+#[tokio::test]
+async fn test_order_detail() {
+    let service = create_test_service();
+
+    let request = OrderDetailRequest {
+        order_id: 123456,
+        affiliate_confirmation_id: None,
+        options: None,
+    };
+    
+    let result = service.order_detail(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
