@@ -30,7 +30,7 @@ use request::{
 use types::*;
 
 use crate::request::{
-    incr_order::IncrOrderRequest, order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest, order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest, order_related::OrderRelatedRequest
+    incr_order::IncrOrderRequest, order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest, order_feedback::OrderFeedbackRequest, order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest, order_related::OrderRelatedRequest
 };
 
 pub mod elong;
@@ -124,4 +124,7 @@ pub trait Elong {
 
     /// 关联订单
     async fn order_related(&self, req: OrderRelatedRequest) -> REOrderRelatedResp;
+
+    /// 入住反馈
+    async fn order_feedback(&self, req: OrderFeedbackRequest) -> REOrderFeedbackResp;
 }

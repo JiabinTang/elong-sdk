@@ -14,6 +14,7 @@ use elong_sdk::request::incr_state::IncrStateRequest;
 use elong_sdk::request::order_cancel::OrderCancelRequest;
 use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_sdk::request::order_detail::OrderDetailRequest;
+use elong_sdk::request::order_feedback::OrderFeedbackRequest;
 use elong_sdk::request::order_pay::OrderPayRequest;
 use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
 use elong_sdk::request::order_related::OrderRelatedRequest;
@@ -608,6 +609,27 @@ async fn test_order_related() {
     };
 
     let result = service.order_related(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 入住反馈
+#[tokio::test]
+async fn test_order_feedback() {
+    let service = create_test_service();
+
+    let request = OrderFeedbackRequest {
+        order_id: 1234567890,
+        arrival_date: None,
+        departure_date: None,
+        customer_name: Some("林立体".to_string()),
+        room_number: None,
+        notes: None,
+    };
+
+    let result = service.order_feedback(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
