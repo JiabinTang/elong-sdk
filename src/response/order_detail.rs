@@ -1090,7 +1090,6 @@ pub struct Refund {
 impl BaseResponse for ElongResponse<OrderDetailReponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
         log::debug!("ElongResponse<OrderDetailReponse> json: {}", json);
-        print!("ElongResponse<OrderDetailReponse> json: {}", json);
         Ok(serde_json::from_str(&json)?)
     }
 }

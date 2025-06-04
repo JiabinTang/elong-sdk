@@ -4,10 +4,29 @@ use async_trait::async_trait;
 
 use crate::{
     request::{
-        data_booking::DataBookingRequest, data_inventory::InventoryRequest, data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest, dictionary::DictionaryRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_order::IncrOrderRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest, order_cancel::OrderCancelRequest, order_create::OrderCreateRequest, order_detail::OrderDetailRequest, order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest, static_brand::StaticBrandRequest, static_city::*, static_grade::StaticGradeRequest, static_group::StaticGroupRequest, static_info::StaticInfoRequest, static_list::StaticListRequest
+        data_booking::DataBookingRequest, data_inventory::InventoryRequest,
+        data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest,
+        dictionary::DictionaryRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest,
+        incr_order::IncrOrderRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
+        order_cancel::OrderCancelRequest, order_create::OrderCreateRequest,
+        order_detail::OrderDetailRequest, order_pay::OrderPayRequest,
+        order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
+        static_brand::StaticBrandRequest, static_city::*, static_grade::StaticGradeRequest,
+        static_group::StaticGroupRequest, static_info::StaticInfoRequest,
+        static_list::StaticListRequest,
     },
     response::{
-        api_response::ElongResponse, data_booking::DataBookingResponse, data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse, data_validate::DataValidateResponse, dictionary::DictionaryResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_order::IncrOrderResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse, order_cancel::OrderCancelResponse, order_create::OrderCreateResponse, order_detail::OrderDetailReponse, order_pay::OrderPayResponse, order_pay_confirm::OrderPayConfirmResponse, static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse, static_group::StaticGroupResponse, static_info::StaticInfoResponse, static_list::StaticListResponse
+        api_response::ElongResponse, data_booking::DataBookingResponse,
+        data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
+        data_validate::DataValidateResponse, dictionary::DictionaryResponse,
+        incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_order::IncrOrderResponse,
+        incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
+        order_cancel::OrderCancelResponse, order_create::OrderCreateResponse,
+        order_detail::OrderDetailReponse, order_pay::OrderPayResponse,
+        order_pay_confirm::OrderPayConfirmResponse, order_promote::OrderPromoteResponse,
+        static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse,
+        static_group::StaticGroupResponse, static_info::StaticInfoResponse,
+        static_list::StaticListResponse,
     },
     types::*,
     Elong,
@@ -287,6 +306,15 @@ impl Elong for ElongService {
         let res: ElongResponse<OrderCancelResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::OrderCancel, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 订单崔确认
+    async fn order_promote(&self, request: OrderPromoteRequest) -> REOrderPromoteResp {
+        let res: ElongResponse<OrderPromoteResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::OrderPromote, request)
             .await?;
         Ok(res)
     }

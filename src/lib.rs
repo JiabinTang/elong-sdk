@@ -30,7 +30,7 @@ use request::{
 use types::*;
 
 use crate::request::{
-    incr_order::IncrOrderRequest, order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest, order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest
+    incr_order::IncrOrderRequest, order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest, order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest
 };
 
 pub mod elong;
@@ -118,4 +118,7 @@ pub trait Elong {
 
     /// 取消订单
     async fn order_cancel(&self, req: OrderCancelRequest) -> REOrderCancelResp;
+
+    /// 订单崔确认
+    async fn order_promote(&self, req: OrderPromoteRequest) -> REOrderPromoteResp;
 }

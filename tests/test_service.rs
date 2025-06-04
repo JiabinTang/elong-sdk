@@ -553,7 +553,7 @@ async fn test_order_detail() {
         affiliate_confirmation_id: None,
         options: None,
     };
-    
+
     let result = service.order_detail(request).await;
     print!("result: {:?}", result);
 
@@ -575,6 +575,22 @@ async fn test_order_cancel() {
 
     let result = service.order_cancel(request).await;
 
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单崔确认
+#[tokio::test]
+async fn test_order_promote() {
+    let service = create_test_service();
+
+    let request = elong_sdk::request::order_promote::OrderPromoteRequest {
+        order_id: 1234567890,
+    };
+
+    let result = service.order_promote(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
