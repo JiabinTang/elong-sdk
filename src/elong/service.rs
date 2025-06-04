@@ -10,11 +10,12 @@ use crate::{
         incr_order::IncrOrderRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
         order_addinvoice::OrderAddinvoiceRequest, order_cancel::OrderCancelRequest,
         order_create::OrderCreateRequest, order_detail::OrderDetailRequest,
-        order_feedback::OrderFeedbackRequest, order_pay::OrderPayRequest,
-        order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
-        order_related::OrderRelatedRequest, static_brand::StaticBrandRequest, static_city::*,
-        static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
-        static_info::StaticInfoRequest, static_list::StaticListRequest,
+        order_feedback::OrderFeedbackRequest, order_list::OrderListRequest,
+        order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest,
+        order_promote::OrderPromoteRequest, order_related::OrderRelatedRequest,
+        static_brand::StaticBrandRequest, static_city::*, static_grade::StaticGradeRequest,
+        static_group::StaticGroupRequest, static_info::StaticInfoRequest,
+        static_list::StaticListRequest,
     },
     response::{
         api_response::ElongResponse, data_booking::DataBookingResponse,
@@ -24,11 +25,12 @@ use crate::{
         incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
         order_addinvoice::OrderAddinvoiceResponse, order_cancel::OrderCancelResponse,
         order_create::OrderCreateResponse, order_detail::OrderDetailReponse,
-        order_feedback::OrderFeedbackResponse, order_pay::OrderPayResponse,
-        order_pay_confirm::OrderPayConfirmResponse, order_promote::OrderPromoteResponse,
-        order_related::OrderRelatedResponse, static_brand::StaticBrandResponse, static_city::*,
-        static_grade::StaticGradeResponse, static_group::StaticGroupResponse,
-        static_info::StaticInfoResponse, static_list::StaticListResponse,
+        order_feedback::OrderFeedbackResponse, order_list::OrderListResponse,
+        order_pay::OrderPayResponse, order_pay_confirm::OrderPayConfirmResponse,
+        order_promote::OrderPromoteResponse, order_related::OrderRelatedResponse,
+        static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse,
+        static_group::StaticGroupResponse, static_info::StaticInfoResponse,
+        static_list::StaticListResponse,
     },
     types::*,
     Elong,
@@ -344,6 +346,15 @@ impl Elong for ElongService {
         let res: ElongResponse<OrderAddinvoiceResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::OrderAddinvoice, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 订单列表
+    async fn order_list(&self, request: OrderListRequest) -> REOrderListResp {
+        let res: ElongResponse<OrderListResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::OrderList, request)
             .await?;
         Ok(res)
     }

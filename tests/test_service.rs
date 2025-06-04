@@ -18,6 +18,7 @@ use elong_sdk::request::order_cancel::OrderCancelRequest;
 use elong_sdk::request::order_create::{Contact, Customer, OrderCreateRequest, OrderRoom};
 use elong_sdk::request::order_detail::OrderDetailRequest;
 use elong_sdk::request::order_feedback::OrderFeedbackRequest;
+use elong_sdk::request::order_list::OrderListRequest;
 use elong_sdk::request::order_pay::OrderPayRequest;
 use elong_sdk::request::order_pay_confirm::OrderPayConfirmRequest;
 use elong_sdk::request::order_related::OrderRelatedRequest;
@@ -679,6 +680,36 @@ async fn test_order_addinvoice() {
     };
 
     let result = service.order_addinvoice(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 订单列表
+#[tokio::test]
+async fn test_order_list() {
+    let service = create_test_service();
+
+    let request = OrderListRequest {
+        creation_time_from: None,
+        creation_time_to: None,
+        hotel_id: None,
+        room_type_id: None,
+        rate_plan_id: None,
+        arrival_date_from: None,
+        arrival_date_to: None,
+        departure_date_from: None,
+        departure_date_to: None,
+        min_update_time: None,
+        max_update_time: None,
+        mobile: None,
+        customer_name: None,
+        status: None,
+        page_index: 1,
+    };
+
+    let result = service.order_list(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

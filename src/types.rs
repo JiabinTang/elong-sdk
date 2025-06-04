@@ -5,6 +5,7 @@ use crate::response::order_addinvoice::OrderAddinvoiceResponse;
 use crate::response::order_cancel::OrderCancelResponse;
 use crate::response::order_detail::OrderDetailReponse;
 use crate::response::order_feedback::OrderFeedbackResponse;
+use crate::response::order_list::OrderListResponse;
 use crate::response::order_promote::OrderPromoteResponse;
 use crate::response::order_related::OrderRelatedResponse;
 use crate::response::{
@@ -45,3 +46,4 @@ pub type REOrderPromoteResp = Result<ElongResponse<OrderPromoteResponse>, ElongE
 pub type REOrderRelatedResp = Result<ElongResponse<OrderRelatedResponse>, ElongError>;
 pub type REOrderFeedbackResp = Result<ElongResponse<OrderFeedbackResponse>, ElongError>;
 pub type REOrderAddinvoiceResp = Result<ElongResponse<OrderAddinvoiceResponse>, ElongError>;
+pub type REOrderListResp = Result<ElongResponse<OrderListResponse>, ElongError>;

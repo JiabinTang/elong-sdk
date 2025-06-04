@@ -32,7 +32,7 @@ use types::*;
 use crate::request::{
     incr_order::IncrOrderRequest, order_addinvoice::OrderAddinvoiceRequest,
     order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest,
-    order_feedback::OrderFeedbackRequest, order_pay::OrderPayRequest,
+    order_feedback::OrderFeedbackRequest, order_list::OrderListRequest, order_pay::OrderPayRequest,
     order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
     order_related::OrderRelatedRequest,
 };
@@ -134,4 +134,7 @@ pub trait Elong {
 
     /// 补开发票
     async fn order_addinvoice(&self, req: OrderAddinvoiceRequest) -> REOrderAddinvoiceResp;
+
+    /// 订单列表
+    async fn order_list(&self, req: OrderListRequest) -> REOrderListResp;
 }
