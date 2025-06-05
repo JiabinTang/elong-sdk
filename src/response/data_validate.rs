@@ -9,7 +9,7 @@ use super::api_response::{BaseResponse, ElongResponse};
 #[serde(rename_all = "PascalCase")]
 pub struct DataValidateResponse {
     /// ResultCode 验证结果 Enum N OK: 正常可预订 Product: 产品无效或关房 Inventory: 房量不够 Rate: 价格不符
-    pub result_code: String,
+    pub result_code: Option<String>,
     /// ErrorMessage 具体结果信息 String(255) Y V1.02新增
     pub error_message: Option<String>,
     /// GuaranteeRate 担保金额 Decimal Y 如果是担保订单才有这个值
