@@ -8,7 +8,7 @@ use super::api_response::{BaseResponse, ElongResponse};
 #[serde(rename_all = "PascalCase")]
 pub struct StaticInfoResponse {
     /// Detail 详情 Detail N 酒店详情数据，参考Detail节点
-    pub detail: Hotel,
+    pub detail: Option<Hotel>,
     /// Suppliers 供应商列表 Supplier[] Y 酒店供应商列表，参考Supplier节点
     pub suppliers: Option<Vec<Supplier>>,
     /// Rooms 房间列表 Room[] Y 酒店房间列表，参考Room节点
