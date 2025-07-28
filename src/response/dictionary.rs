@@ -58,7 +58,7 @@ pub struct Theme {
 
 impl BaseResponse for ElongResponse<DictionaryResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<DictionaryResponse> json: {}", json);
+        log::debug!("ElongResponse<DictionaryResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

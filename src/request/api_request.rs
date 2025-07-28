@@ -39,15 +39,15 @@ impl ApiSignedRequest {
         let format = "json".to_string();
 
         let timestamp = chrono::Local::now().timestamp().to_string();
-        log::debug!("timestamp: {}", timestamp);
-        let data_app_key = format!("{}{}", data, app_key);
-        log::debug!("data_app_key: {}", data_app_key);
+        log::debug!("timestamp: {timestamp}");
+        let data_app_key = format!("{data}{app_key}");
+        log::debug!("data_app_key: {data_app_key}");
         let data_app_key_sig = format!("{:x}", md5::compute(data_app_key));
-        log::debug!("data_app_key_signature: {}", data_app_key_sig);
-        let sig_str = format!("{}{}{}", timestamp, data_app_key_sig, app_secret);
-        log::debug!("sig_str: {}", sig_str);
+        log::debug!("data_app_key_signature: {data_app_key_sig}");
+        let sig_str = format!("{timestamp}{data_app_key_sig}{app_secret}");
+        log::debug!("sig_str: {sig_str}");
         let signature = format!("{:x}", md5::compute(sig_str));
-        log::debug!("signature: {}", signature);
+        log::debug!("signature: {signature}");
 
         ApiSignedRequest {
             user,

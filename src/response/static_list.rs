@@ -27,7 +27,7 @@ pub struct Hotel {
 
 impl BaseResponse for ElongResponse<StaticListResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<StaticListRes> json: {}", json);
+        log::debug!("ElongResponse<StaticListRes> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

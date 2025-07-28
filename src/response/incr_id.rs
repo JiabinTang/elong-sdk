@@ -13,7 +13,7 @@ pub struct IncrIdResponse {
 
 impl BaseResponse for ElongResponse<IncrIdResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<IncrIdResponse> json: {}", json);
+        log::debug!("ElongResponse<IncrIdResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

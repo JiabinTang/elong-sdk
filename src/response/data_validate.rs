@@ -212,7 +212,7 @@ pub struct Nat {
 
 impl BaseResponse for ElongResponse<DataValidateResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<DataValidateResponse> json: {}", json);
+        log::debug!("ElongResponse<DataValidateResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

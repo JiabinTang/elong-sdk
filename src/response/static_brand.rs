@@ -42,7 +42,7 @@ pub struct Brand {
 
 impl BaseResponse for ElongResponse<StaticBrandResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<StaticBrandResponse> json: {}", json);
+        log::debug!("ElongResponse<StaticBrandResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

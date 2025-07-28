@@ -49,7 +49,7 @@ pub struct Inventory {
 
 impl BaseResponse for ElongResponse<InventoryResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<DataInventoryResponse> json: {}", json);
+        log::debug!("ElongResponse<DataInventoryResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

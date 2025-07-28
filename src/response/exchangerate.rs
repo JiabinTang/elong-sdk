@@ -15,7 +15,7 @@ pub struct ExchangerateResponse {
 
 impl BaseResponse for ElongResponse<ExchangerateResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<ExchangerateResponse> json: {}", json);
+        log::debug!("ElongResponse<ExchangerateResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

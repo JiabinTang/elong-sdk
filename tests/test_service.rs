@@ -79,7 +79,7 @@ async fn test_get_static_info() {
     let service = create_test_service();
 
     let request = StaticInfoRequest {
-        hotel_id: "91427260".to_string(),
+        hotel_id: "94421460".to_string(),
         options: Some("1,2,3,4,5,6".to_string()),
     };
 

@@ -35,8 +35,7 @@ impl HttpClient {
         let body = response.bytes().await?;
         if !status.is_success() {
             return Err(ElongError::HttpError(format!(
-                "HTTP request failed with status: {}",
-                status
+                "HTTP request failed with status: {status}"
             )));
         }
         let body = if headers.get(CONTENT_ENCODING).is_some() {

@@ -15,7 +15,7 @@ pub struct OrderPromoteResponse {
 
 impl BaseResponse for ElongResponse<OrderPromoteResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<OrderPromoteResponse> json: {}", json);
+        log::debug!("ElongResponse<OrderPromoteResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

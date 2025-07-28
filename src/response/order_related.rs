@@ -25,7 +25,7 @@ pub struct Relation {
 
 impl BaseResponse for ElongResponse<OrderRelatedResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<OrderRelatedResponse> json: {}", json);
+        log::debug!("ElongResponse<OrderRelatedResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

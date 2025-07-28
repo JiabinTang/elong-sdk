@@ -58,8 +58,8 @@ impl ElongClient {
         )
         .to_params();
 
-        let url = format!("{}?{}", url, params);
-        log::debug!("url: {}", url);
+        let url = format!("{url}?{params}");
+        log::debug!("url: {url}");
 
         let response = self.client.get(&url).await?;
 

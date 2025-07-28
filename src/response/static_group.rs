@@ -34,7 +34,7 @@ pub struct Group {
 
 impl BaseResponse for ElongResponse<StaticGroupResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<StaticGroupResponse> json: {}", json);
+        log::debug!("ElongResponse<StaticGroupResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }

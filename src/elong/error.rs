@@ -21,12 +21,12 @@ pub enum ElongError {
 impl fmt::Display for ElongError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            ElongError::HttpError(msg) => write!(f, "HTTP Error: {}", msg),
-            ElongError::SerdeError(msg) => write!(f, "Serialization Error: {}", msg),
-            ElongError::ApiError(msg) => write!(f, "API Error: {}", msg),
-            ElongError::IoError(msg) => write!(f, "IO Error: {}", msg),
-            ElongError::Utf8Error(msg) => write!(f, "UTF-8 Error: {}", msg),
-            ElongError::Other(msg) => write!(f, "Other Error: {}", msg),
+            ElongError::HttpError(msg) => write!(f, "HTTP Error:{msg}"),
+            ElongError::SerdeError(msg) => write!(f, "Serialization Error:{msg}"),
+            ElongError::ApiError(msg) => write!(f, "API Error:{msg}"),
+            ElongError::IoError(msg) => write!(f, "IO Error:{msg}"),
+            ElongError::Utf8Error(msg) => write!(f, "UTF-8 Error:{msg}"),
+            ElongError::Other(msg) => write!(f, "Other Error:{msg}"),
         }
     }
 }

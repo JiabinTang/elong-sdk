@@ -62,7 +62,7 @@ pub struct Order {
 
 impl BaseResponse for ElongResponse<IncrOrderResponse> {
     fn from_json(json: String) -> Result<Self, ElongError> {
-        log::debug!("ElongResponse<IncrOrderResponse> json: {}", json);
+        log::debug!("ElongResponse<IncrOrderResponse> json: {json}");
         Ok(serde_json::from_str(&json)?)
     }
 }
