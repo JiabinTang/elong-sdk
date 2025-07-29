@@ -40,7 +40,7 @@
 | hotel.list                               | 国内酒店-列表搜索          | [查看文档](https://open.elong.com/doc/info/cn-api-search-hotel_list)               |
 | ✅ hotel.detail                           | 酒店-详情搜索              | [查看文档](https://open.elong.com/doc/info/cn-api-search-hotel_detail)             |
 | hotel.room.change                        | 酒店-房量变化              | [查看文档](https://open.elong.com/doc/info/cn-api-search-hotel_room_change)        |
-| hotel.rate.min                           | 酒店-最小价                | [查看文档](https://open.elong.com/doc/info/cn-api-search-hotel_rate_min)           |
+| ✅ hotel.rate.min                         | 酒店-最小价                | [查看文档](https://open.elong.com/doc/info/cn-api-search-hotel_rate_min)           |
 | hotel.sr.finddic                         | 酒店-获取工单类别          | [查看文档](https://open.elong.com/doc/info/cn-api-hotel_sr_finddic)                |
 | hotel.sr.create                          | 酒店-工单创建              | [查看文档](https://open.elong.com/doc/info/cn-api-hotel_sr_create)                 |
 | hotel.sr.modify                          | 酒店-工单修改              | [查看文档](https://open.elong.com/doc/info/cn-api-hotel_sr_modify)                 |
