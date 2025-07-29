@@ -380,6 +380,15 @@ impl Elong for ElongService {
         Ok(res)
     }
 
+    /// 酒店爬虫详情
+    async fn hotel_crawl_detail(&self, request: HotelDetailRequest) -> REHotelDetailResp {
+        let res: ElongResponse<HotelDetailResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::HotelCrawlDetail, request)
+            .await?;
+        Ok(res)
+    }
+
     /// 酒店最低价
     async fn hotel_rate_min(&self, request: HotelRateMinRequest) -> REHotelRateMinResp {
         let res: ElongResponse<HotelRateMinResponse> = self

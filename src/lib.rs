@@ -146,6 +146,9 @@ pub trait Elong {
     /// 酒店详情搜索
     async fn hotel_detail(&self, req: HotelDetailRequest) -> REHotelDetailResp;
 
+    /// 酒店详情搜索
+    async fn hotel_crawl_detail(&self, req: HotelDetailRequest) -> REHotelDetailResp;
+
     /// 酒店最小价
     async fn hotel_rate_min(&self, req: HotelRateMinRequest) -> REHotelRateMinResp;
 }

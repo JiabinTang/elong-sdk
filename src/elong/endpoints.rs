@@ -89,6 +89,8 @@ pub enum ApiMethod {
     ExchangeRate,
     /// hotel.detail                国内酒店-酒店详情搜索
     HotelDetail,
+    /// hotel.crawl.detail          国内酒店-酒店爬虫详情
+    HotelCrawlDetail,
     /// hotel.rate.min         国内酒店-酒店最低价搜索
     HotelRateMin,
 }
@@ -131,6 +133,7 @@ impl ApiMethod {
             ApiMethod::OrderList => "hotel.order.list",
             ApiMethod::ExchangeRate => "common.exchangerate",
             ApiMethod::HotelDetail => "hotel.detail",
+            ApiMethod::HotelCrawlDetail => "hotel.crawl.detail",
             ApiMethod::HotelRateMin => "hotel.rate.min",
         }
     }

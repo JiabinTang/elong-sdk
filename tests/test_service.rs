@@ -756,6 +756,28 @@ async fn test_hotel_detail() {
     assert!(result.unwrap().is_success());
 }
 
+/// 酒店详情搜索
+#[tokio::test]
+async fn test_hotel_crawl_detail() {
+    let service = create_test_service();
+
+    let request = HotelDetailRequest {
+        arrival_date: "2025-10-25".to_string(),
+        departure_date: "2025-11-26".to_string(),
+        hotel_ids: "90192854".to_string(),
+        number_of_adults: 1,
+        options: Some("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14".to_string()),
+        ..Default::default()
+    };
+    println!("request: {:?}", request);
+
+    let result = service.hotel_crawl_detail(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
 /// 酒店最小价
 #[tokio::test]
 async fn test_hotel_rate_min() {
