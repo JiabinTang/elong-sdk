@@ -7,8 +7,9 @@ use crate::{
         data_booking::DataBookingRequest, data_inventory::InventoryRequest,
         data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest,
         dictionary::DictionaryRequest, exchangerate::ExchangerateRequest,
-        hotel_detail_request::HotelDetailRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest,
-        incr_order::IncrOrderRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
+        hotel_detail_request::HotelDetailRequest, hotel_rate_min_request::HotelRateMinRequest,
+        incr_id::IncrIdRequest, incr_inv::IncrInvRequest, incr_order::IncrOrderRequest,
+        incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
         order_addinvoice::OrderAddinvoiceRequest, order_cancel::OrderCancelRequest,
         order_create::OrderCreateRequest, order_detail::OrderDetailRequest,
         order_feedback::OrderFeedbackRequest, order_list::OrderListRequest,
@@ -23,16 +24,16 @@ use crate::{
         data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
         data_validate::DataValidateResponse, dictionary::DictionaryResponse,
         exchangerate::ExchangerateResponse, hotel_detail_response::HotelDetailResponse,
-        incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_order::IncrOrderResponse,
-        incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
-        order_addinvoice::OrderAddinvoiceResponse, order_cancel::OrderCancelResponse,
-        order_create::OrderCreateResponse, order_detail::OrderDetailReponse,
-        order_feedback::OrderFeedbackResponse, order_list::OrderListResponse,
-        order_pay::OrderPayResponse, order_pay_confirm::OrderPayConfirmResponse,
-        order_promote::OrderPromoteResponse, order_related::OrderRelatedResponse,
-        static_brand::StaticBrandResponse, static_city::*, static_grade::StaticGradeResponse,
-        static_group::StaticGroupResponse, static_info::StaticInfoResponse,
-        static_list::StaticListResponse,
+        hotel_rate_min_response::HotelRateMinResponse, incr_id::IncrIdResponse,
+        incr_inv::IncrInvResponse, incr_order::IncrOrderResponse, incr_rate::IncrRateResponse,
+        incr_state::IncrStateResponse, order_addinvoice::OrderAddinvoiceResponse,
+        order_cancel::OrderCancelResponse, order_create::OrderCreateResponse,
+        order_detail::OrderDetailReponse, order_feedback::OrderFeedbackResponse,
+        order_list::OrderListResponse, order_pay::OrderPayResponse,
+        order_pay_confirm::OrderPayConfirmResponse, order_promote::OrderPromoteResponse,
+        order_related::OrderRelatedResponse, static_brand::StaticBrandResponse, static_city::*,
+        static_grade::StaticGradeResponse, static_group::StaticGroupResponse,
+        static_info::StaticInfoResponse, static_list::StaticListResponse,
     },
     types::*,
     Elong,
@@ -375,6 +376,15 @@ impl Elong for ElongService {
         let res: ElongResponse<HotelDetailResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::HotelDetail, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 酒店最低价
+    async fn hotel_rate_min(&self, request: HotelRateMinRequest) -> REHotelRateMinResp {
+        let res: ElongResponse<HotelRateMinResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::HotelRateMin, request)
             .await?;
         Ok(res)
     }

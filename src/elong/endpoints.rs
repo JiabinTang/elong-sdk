@@ -87,8 +87,10 @@ pub enum ApiMethod {
     OrderList,
     /// common.exchangerate         国内酒店-汇率
     ExchangeRate,
-    /// hotel.detail         国内酒店-酒店详情搜索
+    /// hotel.detail                国内酒店-酒店详情搜索
     HotelDetail,
+    /// hotel.rate.min         国内酒店-酒店最低价搜索
+    HotelRateMin,
 }
 
 impl ApiMethod {
@@ -129,6 +131,7 @@ impl ApiMethod {
             ApiMethod::OrderList => "hotel.order.list",
             ApiMethod::ExchangeRate => "common.exchangerate",
             ApiMethod::HotelDetail => "hotel.detail",
+            ApiMethod::HotelRateMin => "hotel.rate.min",
         }
     }
 }

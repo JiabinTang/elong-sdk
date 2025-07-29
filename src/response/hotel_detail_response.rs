@@ -628,11 +628,11 @@ pub struct Detail {
 #[serde(rename_all = "PascalCase")]
 pub struct Review {
     /// 好评数
-    pub good: i32,
+    pub good: String,
     /// 差评数
-    pub poor: i32,
+    pub poor: String,
     /// 评论总数
-    pub count: i32,
+    pub count: String,
     /// 好评率，可能带百分号
     pub score: Option<String>,
 }
@@ -642,7 +642,7 @@ pub struct Review {
 #[serde(rename_all = "PascalCase")]
 pub struct Image {
     /// 图片类型
-    pub image_type: String,
+    pub r#type: i32,
     /// 是否是酒店封面，"true" 表示封面图片
     pub is_cover_image: Option<String>,
     /// 是否为房型封面，"true" 表示房型封面图片
@@ -660,7 +660,7 @@ pub struct Location {
     /// 图片规格
     pub size_type: i32,
     /// 是否有水印
-    pub water_mark: bool,
+    pub water_mark: String,
     /// 图片地址
     pub url: String,
 }

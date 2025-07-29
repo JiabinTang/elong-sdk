@@ -7,6 +7,7 @@ pub mod data_validate;
 pub mod dictionary;
 pub mod exchangerate;
 pub mod hotel_detail_request;
+pub mod hotel_rate_min_request;
 pub mod incr_id;
 pub mod incr_inv;
 pub mod incr_order;

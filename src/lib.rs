@@ -31,9 +31,10 @@ use types::*;
 
 use crate::request::{
     exchangerate::ExchangerateRequest, hotel_detail_request::HotelDetailRequest,
-    incr_order::IncrOrderRequest, order_addinvoice::OrderAddinvoiceRequest,
-    order_cancel::OrderCancelRequest, order_detail::OrderDetailRequest,
-    order_feedback::OrderFeedbackRequest, order_list::OrderListRequest, order_pay::OrderPayRequest,
+    hotel_rate_min_request::HotelRateMinRequest, incr_order::IncrOrderRequest,
+    order_addinvoice::OrderAddinvoiceRequest, order_cancel::OrderCancelRequest,
+    order_detail::OrderDetailRequest, order_feedback::OrderFeedbackRequest,
+    order_list::OrderListRequest, order_pay::OrderPayRequest,
     order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
     order_related::OrderRelatedRequest,
 };
@@ -144,4 +145,7 @@ pub trait Elong {
 
     /// 酒店详情搜索
     async fn hotel_detail(&self, req: HotelDetailRequest) -> REHotelDetailResp;
+
+    /// 酒店最小价
+    async fn hotel_rate_min(&self, req: HotelRateMinRequest) -> REHotelRateMinResp;
 }

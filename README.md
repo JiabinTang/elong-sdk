@@ -46,6 +46,8 @@ async fn main() {
 }
 ```
 
+[完整API列表请见 api.md](./api.md)
+
 ---
 
 ## 下载与贡献

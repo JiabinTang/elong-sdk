@@ -8,6 +8,7 @@ use elong_sdk::request::data_validate::DataValidateRequest;
 use elong_sdk::request::dictionary::DictionaryRequest;
 use elong_sdk::request::exchangerate::ExchangerateRequest;
 use elong_sdk::request::hotel_detail_request::HotelDetailRequest;
+use elong_sdk::request::hotel_rate_min_request::HotelRateMinRequest;
 use elong_sdk::request::incr_id::IncrIdRequest;
 use elong_sdk::request::incr_inv::IncrInvRequest;
 use elong_sdk::request::incr_order::IncrOrderRequest;
@@ -738,14 +739,39 @@ async fn test_get_exchange_rate() {
 async fn test_hotel_detail() {
     let service = create_test_service();
 
-    let mut request = HotelDetailRequest::default();
-    request.arrival_date = "2025-10-25".to_string();
-    request.departure_date = "2025-10-26".to_string();
-    request.hotel_ids = "26626955".to_string();
-    request.number_of_adults = 1;
+    let request = HotelDetailRequest {
+        arrival_date: "2025-10-25".to_string(),
+        departure_date: "2025-10-26".to_string(),
+        hotel_ids: "90192854".to_string(),
+        number_of_adults: 1,
+        options: Some("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14".to_string()),
+        ..Default::default()
+    };
     println!("request: {:?}", request);
 
     let result = service.hotel_detail(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 酒店最小价
+#[tokio::test]
+async fn test_hotel_rate_min() {
+    let service = create_test_service();
+
+    let request = HotelRateMinRequest {
+        arrival_date: "2025-10-25".to_string(),
+        departure_date: "2025-10-26".to_string(),
+        hotel_ids: "90192854".to_string(),
+        number_of_adults: 1,
+        options: Some("0,1,2,3,4,5,6,7,8,9,10,11".to_string()),
+        ..Default::default()
+    };
+    println!("request: {:?}", request);
+
+    let result = service.hotel_rate_min(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());
