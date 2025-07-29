@@ -7,6 +7,7 @@ use elong_sdk::request::data_rp::DataRpRequest;
 use elong_sdk::request::data_validate::DataValidateRequest;
 use elong_sdk::request::dictionary::DictionaryRequest;
 use elong_sdk::request::exchangerate::ExchangerateRequest;
+use elong_sdk::request::hotel_detail_request::HotelDetailRequest;
 use elong_sdk::request::incr_id::IncrIdRequest;
 use elong_sdk::request::incr_inv::IncrInvRequest;
 use elong_sdk::request::incr_order::IncrOrderRequest;
@@ -726,6 +727,25 @@ async fn test_get_exchange_rate() {
         currency_id: "USD".to_string(),
     };
     let result = service.exchangerate(request).await;
+    print!("result: {:?}", result);
+
+    assert!(result.is_ok());
+    assert!(result.unwrap().is_success());
+}
+
+/// 酒店详情搜索
+#[tokio::test]
+async fn test_hotel_detail() {
+    let service = create_test_service();
+
+    let mut request = HotelDetailRequest::default();
+    request.arrival_date = "2025-10-25".to_string();
+    request.departure_date = "2025-10-26".to_string();
+    request.hotel_ids = "26626955".to_string();
+    request.number_of_adults = 1;
+    println!("request: {:?}", request);
+
+    let result = service.hotel_detail(request).await;
     print!("result: {:?}", result);
 
     assert!(result.is_ok());

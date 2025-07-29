@@ -1,24 +1,20 @@
 use crate::elong::error::ElongError;
 
-use crate::response::exchangerate::ExchangerateResponse;
-use crate::response::incr_order::IncrOrderResponse;
-use crate::response::order_addinvoice::OrderAddinvoiceResponse;
-use crate::response::order_cancel::OrderCancelResponse;
-use crate::response::order_detail::OrderDetailReponse;
-use crate::response::order_feedback::OrderFeedbackResponse;
-use crate::response::order_list::OrderListResponse;
-use crate::response::order_promote::OrderPromoteResponse;
-use crate::response::order_related::OrderRelatedResponse;
 use crate::response::{
     api_response::ElongResponse, data_booking::DataBookingResponse,
     data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
-    data_validate::DataValidateResponse, dictionary::DictionaryResponse, incr_id::IncrIdResponse,
-    incr_inv::IncrInvResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
-    order_create::OrderCreateResponse, order_pay::OrderPayResponse,
-    order_pay_confirm::OrderPayConfirmResponse, static_brand::StaticBrandResponse,
-    static_city::StaticCityResponse, static_grade::StaticGradeResponse,
-    static_group::StaticGroupResponse, static_info::StaticInfoResponse,
-    static_list::StaticListResponse,
+    data_validate::DataValidateResponse, dictionary::DictionaryResponse,
+    exchangerate::ExchangerateResponse, hotel_detail_response::HotelDetailResponse,
+    incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_order::IncrOrderResponse,
+    incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
+    order_addinvoice::OrderAddinvoiceResponse, order_cancel::OrderCancelResponse,
+    order_create::OrderCreateResponse, order_detail::OrderDetailReponse,
+    order_feedback::OrderFeedbackResponse, order_list::OrderListResponse,
+    order_pay::OrderPayResponse, order_pay_confirm::OrderPayConfirmResponse,
+    order_promote::OrderPromoteResponse, order_related::OrderRelatedResponse,
+    static_brand::StaticBrandResponse, static_city::StaticCityResponse,
+    static_grade::StaticGradeResponse, static_group::StaticGroupResponse,
+    static_info::StaticInfoResponse, static_list::StaticListResponse,
 };
 
 pub type RECityResp = Result<ElongResponse<StaticCityResponse>, ElongError>;
@@ -49,3 +45,4 @@ pub type REOrderFeedbackResp = Result<ElongResponse<OrderFeedbackResponse>, Elon
 pub type REOrderAddinvoiceResp = Result<ElongResponse<OrderAddinvoiceResponse>, ElongError>;
 pub type REOrderListResp = Result<ElongResponse<OrderListResponse>, ElongError>;
 pub type REExchangeRateResp = Result<ElongResponse<ExchangerateResponse>, ElongError>;
+pub type REHotelDetailResp = Result<ElongResponse<HotelDetailResponse>, ElongError>;

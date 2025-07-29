@@ -6,23 +6,25 @@ use crate::{
     request::{
         data_booking::DataBookingRequest, data_inventory::InventoryRequest,
         data_rate::DataRateRequest, data_rp::DataRpRequest, data_validate::DataValidateRequest,
-        dictionary::DictionaryRequest, exchangerate::ExchangerateRequest, incr_id::IncrIdRequest,
-        incr_inv::IncrInvRequest, incr_order::IncrOrderRequest, incr_rate::IncrRateRequest,
-        incr_state::IncrStateRequest, order_addinvoice::OrderAddinvoiceRequest,
-        order_cancel::OrderCancelRequest, order_create::OrderCreateRequest,
-        order_detail::OrderDetailRequest, order_feedback::OrderFeedbackRequest,
-        order_list::OrderListRequest, order_pay::OrderPayRequest,
-        order_pay_confirm::OrderPayConfirmRequest, order_promote::OrderPromoteRequest,
-        order_related::OrderRelatedRequest, static_brand::StaticBrandRequest, static_city::*,
-        static_grade::StaticGradeRequest, static_group::StaticGroupRequest,
-        static_info::StaticInfoRequest, static_list::StaticListRequest,
+        dictionary::DictionaryRequest, exchangerate::ExchangerateRequest,
+        hotel_detail_request::HotelDetailRequest, incr_id::IncrIdRequest, incr_inv::IncrInvRequest,
+        incr_order::IncrOrderRequest, incr_rate::IncrRateRequest, incr_state::IncrStateRequest,
+        order_addinvoice::OrderAddinvoiceRequest, order_cancel::OrderCancelRequest,
+        order_create::OrderCreateRequest, order_detail::OrderDetailRequest,
+        order_feedback::OrderFeedbackRequest, order_list::OrderListRequest,
+        order_pay::OrderPayRequest, order_pay_confirm::OrderPayConfirmRequest,
+        order_promote::OrderPromoteRequest, order_related::OrderRelatedRequest,
+        static_brand::StaticBrandRequest, static_city::*, static_grade::StaticGradeRequest,
+        static_group::StaticGroupRequest, static_info::StaticInfoRequest,
+        static_list::StaticListRequest,
     },
     response::{
         api_response::ElongResponse, data_booking::DataBookingResponse,
         data_inventory::InventoryResponse, data_rate::DataRateResponse, data_rp::DataRpResponse,
         data_validate::DataValidateResponse, dictionary::DictionaryResponse,
-        exchangerate::ExchangerateResponse, incr_id::IncrIdResponse, incr_inv::IncrInvResponse,
-        incr_order::IncrOrderResponse, incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
+        exchangerate::ExchangerateResponse, hotel_detail_response::HotelDetailResponse,
+        incr_id::IncrIdResponse, incr_inv::IncrInvResponse, incr_order::IncrOrderResponse,
+        incr_rate::IncrRateResponse, incr_state::IncrStateResponse,
         order_addinvoice::OrderAddinvoiceResponse, order_cancel::OrderCancelResponse,
         order_create::OrderCreateResponse, order_detail::OrderDetailReponse,
         order_feedback::OrderFeedbackResponse, order_list::OrderListResponse,
@@ -364,6 +366,15 @@ impl Elong for ElongService {
         let res: ElongResponse<ExchangerateResponse> = self
             .client
             .fetch_data(&self.url, ApiMethod::ExchangeRate, request)
+            .await?;
+        Ok(res)
+    }
+
+    /// 酒店详情搜索
+    async fn hotel_detail(&self, request: HotelDetailRequest) -> REHotelDetailResp {
+        let res: ElongResponse<HotelDetailResponse> = self
+            .client
+            .fetch_data(&self.url, ApiMethod::HotelDetail, request)
             .await?;
         Ok(res)
     }
