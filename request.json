@@ -1,0 +1,16 @@
+{
+    "ArrivalDate": "2025-8-25",
+    "DepartureDate": "2025-8-26",
+    "LatestArrivalTime": null,
+    "PaymentType": null,
+    "InvoiceMode": null,
+    "HotelIds": "50101084",
+    "RoomTypeId": null,
+    "RatePlanId": null,
+    "NumberOfAdults": 1,
+    "ChildAges": null,
+    "NumberOfRooms": null,
+    "SaveMajiaId": null,
+    "Options": "1,2,5",
+    "Nat": null
+}

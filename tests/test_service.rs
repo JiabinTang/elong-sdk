@@ -61,8 +61,8 @@ async fn test_get_static_list() {
     let service = create_test_service();
 
     let request = StaticListRequest {
-        start_time: Some("2025-04-016 00:00:00".to_string()),
-        end_time: Some("2025-07-016 00:00:00".to_string()),
+        start_time: Some("2025-12-16 00:00:00".to_string()),
+        end_time: Some("2025-12-16 00:00:00".to_string()),
         city_id: "0101".to_string(),
         page_size: Some(10),
         page_index: Some(1),
@@ -81,12 +81,13 @@ async fn test_get_static_info() {
     let service = create_test_service();
 
     let request = StaticInfoRequest {
-        hotel_id: "94421460".to_string(),
+        hotel_id: "40101587".to_string(),
         options: Some("1,2,3,4,5,6".to_string()),
     };
 
     let result = service.get_static_info(request).await;
-    print!("result: {:?}", result);
+    let result_json = serde_json::to_string(&result).unwrap();
+    println!("result_json: {}", result_json);
 
     assert!(result.is_ok());
     assert!(result.unwrap().is_success());
@@ -98,7 +99,7 @@ async fn test_get_static_grade() {
     let service = create_test_service();
 
     let request = StaticGradeRequest {
-        hotel_id: "93993637".to_string(),
+        hotel_id: "40101587".to_string(),
     };
 
     let result = service.get_static_grade(request).await;
@@ -740,17 +741,21 @@ async fn test_hotel_detail() {
     let service = create_test_service();
 
     let request = HotelDetailRequest {
-        arrival_date: "2025-10-25".to_string(),
-        departure_date: "2025-10-26".to_string(),
-        hotel_ids: "90192854".to_string(),
+        arrival_date: "2025-8-25".to_string(),
+        departure_date: "2025-8-26".to_string(),
+        hotel_ids: "50101084".to_string(),
         number_of_adults: 1,
-        options: Some("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14".to_string()),
+        options: Some("1,2,5".to_string()),
         ..Default::default()
     };
-    println!("request: {:?}", request);
+    let request_json = serde_json::to_string(&request).unwrap();
+    println!("request_json: {}", request_json);
+    std::fs::write("request3.json", &request_json).expect("写入 request.json 失败");
 
     let result = service.hotel_detail(request).await;
-    print!("result: {:?}", result);
+    let result_json = serde_json::to_string(&result).unwrap();
+    println!("result_json: {}", result_json);
+    std::fs::write("result3.json", &result_json).expect("写入 result.json 失败");
 
     assert!(result.is_ok());
     assert!(result.unwrap().is_success());

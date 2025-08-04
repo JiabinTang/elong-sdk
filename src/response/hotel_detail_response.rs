@@ -764,9 +764,9 @@ pub struct HAvailPolicy {
     /// 提示内容
     pub avail_policy_text: String,
     /// 有效开始时间
-    pub avail_policy_start: String,
+    pub avail_policy_start: Option<String>,
     /// 有效结束时间
-    pub avail_policy_end: String,
+    pub avail_policy_end: Option<String>,
 }
 
 /// 礼包一级信息
