@@ -1,6 +1,6 @@
 [package]
 name = "elong-sdk"
-version = "0.1.7"
+version = "0.1.8"
 edition = "2021"
 authors = ["唐加彬 me@tangjiabin.cn"]
 description = "用于与艺龙数据异步交互的 SDK"

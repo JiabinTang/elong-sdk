@@ -767,17 +767,21 @@ async fn test_hotel_crawl_detail() {
     let service = create_test_service();
 
     let request = HotelDetailRequest {
-        arrival_date: "2025-10-25".to_string(),
-        departure_date: "2025-11-26".to_string(),
-        hotel_ids: "90192854".to_string(),
+        arrival_date: "2025-09-05".to_string(),
+        departure_date: "2025-09-06".to_string(),
+        hotel_ids: "65996711".to_string(),
         number_of_adults: 1,
-        options: Some("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14".to_string()),
+        options: Some("5".to_string()),
         ..Default::default()
     };
-    println!("request: {:?}", request);
+    let request_json = serde_json::to_string(&request).unwrap();
+    println!("request_json: {}", request_json);
+    std::fs::write("request.json", &request_json).expect("写入 request.json 失败");
 
     let result = service.hotel_crawl_detail(request).await;
-    print!("result: {:?}", result);
+    let result_json = serde_json::to_string(&result).unwrap();
+    println!("result_json: {}", result_json);
+    std::fs::write("result.json", &result_json).expect("写入 result.json 失败");
 
     assert!(result.is_ok());
     assert!(result.unwrap().is_success());
